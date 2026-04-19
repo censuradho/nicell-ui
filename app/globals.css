@@ -2,25 +2,30 @@
 
 :root {
   --background: #ffffff;
+  --background-glass: rgba(251, 251, 253, 0.8);
   --foreground: #1D1D1F;
+  --primary: #0071E3;
   --card: #F5F5F7;
   --card-foreground: #6E6E73;
   --accent: #E7EDF5;
-  --primary: 0071E3;
+  --primary: #0071E3;
   --primary-foreground: #ffffff;
   --destructive: #FF3B30;
   --destructive-foreground: #ffffff;
+  --outline: #E8E8ED;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-background-glass: var(--background-glass);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-accent: var(--accent);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-destructive: var(--destructive);
+  --color-outline: var(--outline);
   --color-destructive-foreground: var(--destructive-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -28,16 +33,41 @@
 
 @layer utilities {
   .container {
-    @apply mx-auto w-full max-w-[720px] lg:max-w-6xl 
+    @apply mx-auto w-full max-w-180 lg:max-w-6xl xl:max-w-7xl
   }
   .anchor {
     @apply hover:underline
   }
 }
 
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-lato);
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@layer utilities {
+  .animate-marquee-left {
+    animation: marquee-left 35s linear infinite;
+  }
+  .animate-marquee-right {
+    animation: marquee-right 40s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none;
+  }
 }
