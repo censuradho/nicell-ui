@@ -22,9 +22,9 @@ function sortProducts(list: Product[], sort: SortKey): Product[] {
   }
 }
 
-export function useAccessories(initialCat = 'all') {
+export function useAccessories(initialCat = 'all', initialBrand = 'all') {
   const [filter, _setFilter] = useState(initialCat)
-  const [brand,  _setBrand]  = useState('all')
+  const [brand,  _setBrand]  = useState(initialBrand)
   const [search, _setSearch] = useState('')
   const [sort,   _setSort]   = useState<SortKey>('featured')
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE)
