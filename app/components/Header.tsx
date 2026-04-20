@@ -29,13 +29,14 @@ export function Header() {
           </ul>
         </nav>
 
-        <AnchorButton
-          href="/#orcamento"
-          size="sm"
-          className="hidden lg:flex"
-        >
-          Orçamento online
-        </AnchorButton>
+        <div className="hidden lg:flex items-center gap-3">
+          <AnchorButton href="/login" variant="text" size="sm">
+            Login
+          </AnchorButton>
+          <AnchorButton href="/#orcamento" size="sm">
+            Orçamento online
+          </AnchorButton>
+        </div>
 
         <MobileMenu navigation={navigation} />
       </div>
