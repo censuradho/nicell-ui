@@ -4,8 +4,7 @@ export function AccessoriesSection() {
   return (
     <section className="py-10">
       <div className="container">
-        <a
-          href="#"
+        <div
           className="group relative overflow-hidden rounded-[22px] bg-[#1d1d1f] grid grid-cols-1 md:grid-cols-2 items-center gap-8 px-7 py-10 md:px-12.5 md:py-15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
         >
           {/* gradiente decorativo */}
@@ -27,7 +26,7 @@ export function AccessoriesSection() {
             <p className="text-[17px] text-[#c7c7cc] leading-relaxed mb-6">
               Películas, capinhas, carregadores, fones e caixas de som Bluetooth — selecionados pra durar.
             </p>
-            <AnchorButton variant="white" href="#">
+            <AnchorButton variant="white" href="/acessorios">
               Ver loja completa
             </AnchorButton>
           </div>
@@ -37,7 +36,7 @@ export function AccessoriesSection() {
             <span className="text-[80px] leading-none select-none">📱</span>
             <span className="text-[64px] leading-none select-none">🎧</span>
           </div>
-        </a>
+        </div>
       </div>
     </section>
   )
