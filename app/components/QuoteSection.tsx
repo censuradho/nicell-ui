@@ -171,7 +171,6 @@ export function QuoteSection() {
   const { register } = form
   const s = config.steps
 
-  console.log(errors)
   return (
     <section
       id="orcamento"
