@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function PageHero() {
   return (
-    <section className="text-center pt-16 pb-10 px-6">
+    <section className="text-center pt-16 pb-10 px-4">
       <nav aria-label="Breadcrumb" className="text-xs text-card-foreground mb-3">
         <ol className="flex items-center justify-center gap-1.5 list-none">
           <li><Link href="/" className="hover:underline">Início</Link></li>
