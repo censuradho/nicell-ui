@@ -64,9 +64,15 @@ export function Footer() {
       <div className="container">
 
         {/* disclaimer */}
-        <p className="text-xs leading-relaxed pb-5 border-b border-outline">
+        <p className="text-xs leading-relaxed pb-2">
           {disclaimer}
         </p>
+
+        {/* endereço */}
+        <address className="not-italic text-xs text-card-foreground mb-4 flex items-center gap-2">
+          <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="inline-block align-middle text-primary" viewBox="0 0 24 24"><path d="M12 21c-4.8-4.8-8-7.2-8-11A8 8 0 0 1 20 10c0 3.8-3.2 6.2-8 11Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Av. Edgar Píres de Castro, 886 – Hípica, Porto Alegre/RS – 90050-321
+        </address>
 
         {/* nav columns */}
         <nav
