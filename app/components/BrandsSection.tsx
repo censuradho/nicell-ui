@@ -48,9 +48,8 @@ function MarqueeRow({ brands, reverse }: { brands: typeof row1; reverse?: boolea
       <div
         className={`flex ${reverse ? 'animate-marquee-right' : 'animate-marquee-left'} group-hover:[animation-play-state:paused]`}
       >
-        {/* duas cópias idênticas com pr-4 para alinhar exatamente o -50% */}
-        {[0, 1].map((copy) => (
-          <div key={copy} className="flex gap-4 pr-4">
+        {[0, 1, 2, 3].map((copy) => (
+          <div key={copy} aria-hidden={copy > 0 || undefined} className="flex gap-4 pr-4">
             {brands.map((brand) => (
               <BrandPill key={brand.name} {...brand} />
             ))}
