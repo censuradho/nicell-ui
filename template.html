@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TechFix — Assistência Técnica Especializada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     Tokens — inspirados no design system da Apple Store BR
+     ========================================================= */
+  :root{
+    --apple-text: #1d1d1f;
+    --apple-text-secondary: #6e6e73;
+    --apple-text-tertiary: #86868b;
+    --apple-bg: #ffffff;
+    --apple-bg-secondary: #f5f5f7;
+    --apple-bg-tertiary: #fafafa;
+    --apple-border: #d2d2d7;
+    --apple-border-light: #e8e8ed;
+    --apple-blue: #0071e3;
+    --apple-blue-hover: #0077ed;
+    --apple-blue-active: #006edb;
+    --apple-link: #0066cc;
+    --apple-success: #34c759;
+    --apple-warning: #ff9500;
+    --apple-danger: #ff3b30;
+    --apple-nav-bg: rgba(251, 251, 253, 0.8);
+    --apple-radius-sm: 8px;
+    --apple-radius-md: 12px;
+    --apple-radius-lg: 18px;
+    --apple-radius-xl: 22px;
+    --apple-shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+    --apple-shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+    --apple-shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
+    --apple-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: var(--apple-font);
+    color: var(--apple-text);
+    background: var(--apple-bg);
+    line-height: 1.47059;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a{color: var(--apple-link); text-decoration:none;}
+  a:hover{text-decoration: underline;}
+  button{font-family: inherit; cursor:pointer; border:none; background:none;}
+  img{max-width:100%; display:block;}
+
+  /* =========================================================
+     Top utility nav (faixa cinza superior estilo Apple)
+     ========================================================= */
+  .top-bar{
+    background: var(--apple-bg-secondary);
+    border-bottom: 1px solid var(--apple-border-light);
+    font-size: 12px;
+    color: var(--apple-text-secondary);
+  }
+  .top-bar-inner{
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 8px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .top-bar a{ color: var(--apple-text-secondary); }
+
+  /* =========================================================
+     Navbar principal — backdrop blur característico Apple
+     ========================================================= */
+  .navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--apple-nav-bg);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    height: 44px;
+  }
+  .nav-inner{
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 22px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo{
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: var(--apple-text);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .nav-logo span{ color: var(--apple-blue); }
+  .nav-logo:hover{ text-decoration: none; }
+  .nav-links{
+    display: flex;
+    gap: 0;
+    list-style: none;
+  }
+  .nav-links a{
+    font-size: 12px;
+    color: var(--apple-text);
+    padding: 0 10px;
+    line-height: 44px;
+    opacity: 0.88;
+    transition: opacity 0.2s ease;
+  }
+  .nav-links a:hover{
+    opacity: 1;
+    text-decoration: none;
+  }
+  .nav-cta{
+    font-size: 12px;
+    background: var(--apple-blue);
+    color: white !important;
+    padding: 6px 14px;
+    border-radius: 980px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover{
+    background: var(--apple-blue-hover);
+    text-decoration: none;
+  }
+
+  /* =========================================================
+     Hero — estilo Apple com tipografia gigante
+     ========================================================= */
+  .hero{
+    background: var(--apple-bg);
+    text-align: center;
+    padding: 60px 22px 80px;
+  }
+  .hero-eyebrow{
+    font-size: 17px;
+    color: var(--apple-text-secondary);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .hero-title{
+    font-size: 56px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    line-height: 1.07143;
+    color: var(--apple-text);
+    margin-bottom: 14px;
+  }
+  .hero-subtitle{
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.10722;
+    letter-spacing: 0.004em;
+    color: var(--apple-text);
+    max-width: 740px;
+    margin: 0 auto 24px;
+  }
+  .hero-actions{
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .hero-actions a{
+    font-size: 17px;
+    font-weight: 400;
+  }
+  .hero-actions a:not(.btn-primary){
+    color: var(--apple-link);
+  }
+  .hero-actions a:not(.btn-primary)::after{
+    content: ' ›';
+    font-weight: 300;
+  }
+  .btn-primary{
+    background: var(--apple-blue);
+    color: white !important;
+    padding: 12px 22px;
+    border-radius: 980px;
+    font-size: 17px !important;
+    font-weight: 400;
+    transition: background 0.2s ease;
+    display: inline-block;
+  }
+  .btn-primary:hover{
+    background: var(--apple-blue-hover);
+    text-decoration: none;
+  }
+  .btn-primary::after{ content: '' !important; }
+
+  /* Imagem do hero (foto real da oficina/técnico) */
+  .hero-media{
+    margin: 60px auto 0;
+    max-width: 980px;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16 / 7;
+    background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  }
+  /* Imagem com efeito Ken Burns: zoom + pan contínuo */
+  .hero-media img,
+  .hero-media-placeholder{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: kenBurns 24s ease-in-out infinite alternate;
+    transform-origin: center center;
+  }
+  @keyframes kenBurns{
+    0%   { transform: scale(1)    translate(0, 0); }
+    50%  { transform: scale(1.08) translate(-1.5%, 1%); }
+    100% { transform: scale(1.12) translate(2%, -1.5%); }
+  }
+  /* Vinheta sutil nas bordas — dá profundidade cinematográfica */
+  .hero-media::after{
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.18) 100%),
+      linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.12) 100%);
+    z-index: 1;
+  }
+  /* Placeholder enquanto a foto real não está disponível */
+  .hero-media-placeholder{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(0,113,227,0.10) 0, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(255,149,0,0.08) 0, transparent 50%),
+      linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+  }
+  .hero-media-placeholder::after{
+    content: 'Foto da oficina aqui';
+    font-size: 13px;
+    color: var(--apple-text-tertiary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  /* Respeita usuários que preferem menos movimento */
+  @media (prefers-reduced-motion: reduce){
+    .hero-media img,
+    .hero-media-placeholder{
+      animation: none;
+    }
+  }
+
+  /* =========================================================
+     Tile grid — padrão Apple Store de cards quadrados
+     ========================================================= */
+  .tile-grid{
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 22px 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .tile{
+    position: relative;
+    background: var(--apple-bg-secondary);
+    border-radius: 22px;
+    padding: 50px 44px;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    overflow: hidden;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    isolation: isolate;
+  }
+  .tile:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.10);
+  }
+  /* Halo de gradiente colorido no fundo (camada decorativa) */
+  .tile-bg{
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.55;
+    transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .tile:hover .tile-bg{
+    opacity: 0.75;
+    transform: scale(1.05);
+  }
+
+  /* Cabeçalho com badge */
+  .tile-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.7);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    color: var(--apple-text);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    padding: 6px 12px;
+    border-radius: 980px;
+    width: max-content;
+    margin-bottom: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  .tile-badge-dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--apple-success);
+    box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%   { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(52, 199, 89, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
+  }
+  .tile-eyebrow{
+    font-size: 13px;
+    color: var(--apple-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .tile-title{
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.022em;
+    line-height: 1.05;
+    color: var(--apple-text);
+    margin-bottom: 12px;
+  }
+  .tile-subtitle{
+    font-size: 17px;
+    color: var(--apple-text-secondary);
+    margin-bottom: 24px;
+    line-height: 1.45;
+    max-width: 90%;
+  }
+  /* Lista de features */
+  .tile-features{
+    list-style: none;
+    margin: 0 0 28px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .tile-features li{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--apple-text);
+    font-weight: 500;
+  }
+  .tile-features li::before{
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent, var(--apple-blue));
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2.5 6.2l2.6 2.6L9.5 3.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px;
+  }
+
+  /* CTAs */
+  .tile-actions{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: auto;
+    flex-wrap: wrap;
+  }
+  .tile-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--apple-text);
+    color: white;
+    padding: 11px 22px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .tile-btn:hover{
+    text-decoration: none;
+    transform: scale(1.03);
+  }
+  .tile-btn.is-primary{
+    background: var(--accent, var(--apple-blue));
+  }
+  .tile-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--accent, var(--apple-link));
+    font-size: 14px;
+    font-weight: 500;
+    transition: gap 0.3s ease;
+  }
+  .tile-link::after{ content: '›'; font-size: 18px; line-height: 1; }
+  .tile:hover .tile-link{ gap: 8px; }
+
+  /* Visual decorativo (emoji grande) com Ken Burns sutil */
+  .tile-visual{
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    font-size: 200px;
+    line-height: 1;
+    opacity: 0.18;
+    transform: rotate(-12deg);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .tile:hover .tile-visual{
+    transform: rotate(-8deg) scale(1.1) translate(-10px, -10px);
+    opacity: 0.28;
+  }
+
+  /* Variantes de cor por tile */
+  .tile[data-theme="celulares"]{
+    background: #f0f6ff;
+    --accent: #0071e3;
+  }
+  .tile[data-theme="celulares"] .tile-bg{
+    background:
+      radial-gradient(circle at 20% 20%, rgba(0,113,227,0.25), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(94,92,230,0.15), transparent 50%);
+  }
+
+  .tile[data-theme="computadores"]{
+    background: #1d1d1f;
+    color: white;
+    --accent: #ff9500;
+  }
+  .tile[data-theme="computadores"] .tile-title,
+  .tile[data-theme="computadores"] .tile-features li{ color: white; }
+  .tile[data-theme="computadores"] .tile-eyebrow,
+  .tile[data-theme="computadores"] .tile-subtitle{ color: #a1a1a6; }
+  .tile[data-theme="computadores"] .tile-badge{
+    background: rgba(255,255,255,0.10);
+    color: white;
+    border-color: rgba(255,255,255,0.15);
+  }
+  .tile[data-theme="computadores"] .tile-bg{
+    background:
+      radial-gradient(circle at 70% 20%, rgba(255,149,0,0.30), transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(255,45,85,0.15), transparent 50%);
+    opacity: 0.7;
+  }
+  .tile[data-theme="computadores"] .tile-btn{
+    background: white;
+    color: var(--apple-text);
+  }
+  .tile[data-theme="computadores"] .tile-btn.is-primary{
+    background: var(--accent);
+    color: white;
+  }
+  .tile[data-theme="computadores"] .tile-link{ color: #ff9500; }
+
+  .tile[data-theme="ps5"]{
+    background: linear-gradient(135deg, #e0eaff 0%, #f5f0ff 100%);
+    --accent: #5e5ce6;
+  }
+  .tile[data-theme="ps5"] .tile-bg{
+    background:
+      radial-gradient(circle at 30% 30%, rgba(94,92,230,0.30), transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(0,113,227,0.20), transparent 55%);
+  }
+
+  .tile[data-theme="xbox"]{
+    background: linear-gradient(135deg, #e8f7e9 0%, #f0fff4 100%);
+    --accent: #34c759;
+  }
+  .tile[data-theme="xbox"] .tile-bg{
+    background:
+      radial-gradient(circle at 70% 30%, rgba(52,199,89,0.30), transparent 55%),
+      radial-gradient(circle at 20% 80%, rgba(48,176,199,0.20), transparent 55%);
+  }
+
+  /* =========================================================
+     Section wrapper genérico
+     ========================================================= */
+  .section{
+    padding: 80px 22px;
+  }
+  .section-inner{
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  .section-heading{
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    color: var(--apple-text);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .section-sub{
+    font-size: 21px;
+    color: var(--apple-text-secondary);
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* =========================================================
+     Logos das marcas atendidas
+     ========================================================= */
+  .brands-section{
+    background: var(--apple-bg-secondary);
+    padding: 100px 0;
+    overflow: hidden;
+  }
+  .brands-header{
+    text-align: center;
+    padding: 0 22px;
+    margin-bottom: 48px;
+  }
+  .brands-stat{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 980px;
+    font-size: 13px;
+    color: var(--apple-text);
+    font-weight: 500;
+    margin-top: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .brands-stat strong{
+    color: var(--apple-blue);
+    font-weight: 700;
+  }
+  .brands-stat-dot{
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--apple-success);
+  }
+
+  /* Marquee container — duas faixas com fade nas bordas */
+  .marquee{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+  }
+  .marquee + .marquee{
+    margin-top: 16px;
+  }
+  /* Track contém os itens duplicados pra fazer o loop perfeito */
+  .marquee-track{
+    display: flex;
+    width: max-content;
+    gap: 16px;
+    animation: marquee-left 35s linear infinite;
+  }
+  .marquee-track.is-reverse{
+    animation: marquee-right 40s linear infinite;
+  }
+  /* Pausa ao passar o mouse */
+  .marquee:hover .marquee-track{
+    animation-play-state: paused;
+  }
+  @keyframes marquee-left{
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @keyframes marquee-right{
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  /* Acessibilidade: respeitar preferência de menos movimento */
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{ animation: none; }
+  }
+
+  .brand-pill{
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: white;
+    border-radius: 980px;
+    padding: 16px 28px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    border: 1px solid transparent;
+  }
+  .brand-pill:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    border-color: var(--apple-border-light);
+  }
+  .brand-pill-logo{
+    font-size: 26px;
+    line-height: 1;
+    filter: grayscale(0.2);
+    transition: filter 0.3s ease, transform 0.3s ease;
+  }
+  .brand-pill:hover .brand-pill-logo{
+    filter: grayscale(0);
+    transform: scale(1.1);
+  }
+  .brand-pill-name{
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--apple-text);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  /* =========================================================
+     Serviços — grid de 3 colunas
+     ========================================================= */
+  .services-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .service-card{
+    position: relative;
+    background: var(--apple-bg-secondary);
+    border-radius: 22px;
+    padding: 32px 28px 28px;
+    border: 1px solid transparent;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.3s ease,
+                background 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  /* Faixa colorida superior (acento por categoria) */
+  .service-card::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: 24px;
+    height: 3px;
+    background: var(--accent, var(--apple-blue));
+    border-radius: 0 0 3px 3px;
+    opacity: 0;
+    transform: scaleX(0.3);
+    transform-origin: center;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .service-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+    background: white;
+    border-color: var(--apple-border-light);
+  }
+  .service-card:hover::before{
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  /* Cabeçalho do card: ícone + tag de categoria */
+  .service-header{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .service-icon{
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06),
+                0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .service-card:hover .service-icon{
+    transform: scale(1.08) rotate(-3deg);
+  }
+  .service-tag{
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--accent, var(--apple-blue));
+    background: var(--accent-bg, rgba(0,113,227,0.08));
+    padding: 5px 10px;
+    border-radius: 980px;
+    line-height: 1;
+    align-self: center;
+  }
+  .service-title{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.022em;
+    color: var(--apple-text);
+    line-height: 1.25;
+  }
+  .service-desc{
+    font-size: 14px;
+    color: var(--apple-text-secondary);
+    line-height: 1.55;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  /* Footer: preço + CTA */
+  .service-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--apple-border-light);
+  }
+  .service-price{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .service-price-label{
+    font-size: 11px;
+    color: var(--apple-text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+  }
+  .service-price-value{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--apple-text);
+  }
+  .service-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent, var(--apple-link));
+    transition: gap 0.3s ease;
+  }
+  .service-link::after{
+    content: '›';
+    font-size: 18px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover .service-link{ gap: 8px; }
+  .service-card:hover .service-link::after{ transform: translateX(2px); }
+
+  /* Variante: card sem preço (informativos como "Diagnóstico" e "Garantia") */
+  .service-card.is-info .service-footer{
+    justify-content: flex-end;
+  }
+
+  /* Cores temáticas por categoria */
+  .service-card[data-accent="blue"]   { --accent:#0071e3; --accent-bg:rgba(0,113,227,0.08); }
+  .service-card[data-accent="purple"] { --accent:#5e5ce6; --accent-bg:rgba(94,92,230,0.08); }
+  .service-card[data-accent="green"]  { --accent:#34c759; --accent-bg:rgba(52,199,89,0.10); }
+  .service-card[data-accent="orange"] { --accent:#ff9500; --accent-bg:rgba(255,149,0,0.10); }
+  .service-card[data-accent="pink"]   { --accent:#ff2d55; --accent-bg:rgba(255,45,85,0.08); }
+  .service-card[data-accent="teal"]   { --accent:#30b0c7; --accent-bg:rgba(48,176,199,0.10); }
+
+  /* =========================================================
+     Quote builder — auto-atendimento estilo Apple
+     ========================================================= */
+  .quote-section{
+    background: linear-gradient(180deg, #fafafa 0%, #f5f5f7 100%);
+    padding: 100px 22px;
+  }
+  .quote-card{
+    max-width: 720px;
+    margin: 40px auto 0;
+    background: white;
+    border-radius: 22px;
+    padding: 48px;
+    box-shadow: var(--apple-shadow-lg);
+  }
+  .progress-bar{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .progress-step{
+    flex: 1;
+    height: 4px;
+    background: var(--apple-border-light);
+    border-radius: 2px;
+    transition: background 0.3s ease;
+  }
+  .progress-step.active{ background: var(--apple-blue); }
+  .progress-step.complete{ background: var(--apple-success); }
+
+  .quote-step{ display: none; }
+  .quote-step.active{ display: block; animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn{
+    from{ opacity: 0; transform: translateY(8px); }
+    to{ opacity: 1; transform: translateY(0); }
+  }
+
+  .step-label{
+    font-size: 14px;
+    color: var(--apple-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .step-question{
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    color: var(--apple-text);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .step-hint{
+    font-size: 16px;
+    color: var(--apple-text-secondary);
+    margin-bottom: 28px;
+  }
+
+  .options-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .option-card{
+    background: white;
+    border: 2px solid var(--apple-border-light);
+    border-radius: 14px;
+    padding: 20px 18px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--apple-text);
+  }
+  .option-card:hover{
+    border-color: var(--apple-text-tertiary);
+    transform: translateY(-1px);
+  }
+  .option-card.selected{
+    border-color: var(--apple-blue);
+    background: rgba(0,113,227,0.04);
+  }
+  .option-card .option-icon{
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .option-card .option-text{
+    flex: 1;
+  }
+  .option-card .option-desc{
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--apple-text-secondary);
+    margin-top: 2px;
+  }
+
+  .form-group{
+    margin-bottom: 20px;
+  }
+  .form-label{
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--apple-text);
+    margin-bottom: 8px;
+  }
+  .form-input, .form-textarea{
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--apple-border);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--apple-text);
+    background: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .form-input:focus, .form-textarea:focus{
+    outline: none;
+    border-color: var(--apple-blue);
+    box-shadow: 0 0 0 4px rgba(0,113,227,0.1);
+  }
+  .form-textarea{
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .step-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    gap: 12px;
+  }
+  .btn-back{
+    color: var(--apple-link);
+    font-size: 16px;
+    padding: 10px 0;
+  }
+  .btn-back:hover{ text-decoration: underline; }
+  .btn-next{
+    background: var(--apple-blue);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 980px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+    margin-left: auto;
+  }
+  .btn-next:hover{ background: var(--apple-blue-hover); }
+  .btn-next:disabled{
+    background: var(--apple-border);
+    cursor: not-allowed;
+  }
+
+  /* Resultado do orçamento */
+  .quote-result{
+    text-align: center;
+  }
+  .result-icon{
+    width: 64px;
+    height: 64px;
+    background: var(--apple-success);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 32px;
+    font-weight: 600;
+  }
+  .result-title{
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.022em;
+  }
+  .result-sub{
+    font-size: 16px;
+    color: var(--apple-text-secondary);
+    margin-bottom: 28px;
+  }
+  .price-box{
+    background: var(--apple-bg-secondary);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .price-row{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 15px;
+    color: var(--apple-text);
+  }
+  .price-row + .price-row{
+    border-top: 1px solid var(--apple-border-light);
+  }
+  .price-row.total{
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 2px solid var(--apple-text);
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .price-row .price-label{
+    color: var(--apple-text-secondary);
+  }
+  .price-row.total .price-label{
+    color: var(--apple-text);
+  }
+  .result-meta{
+    background: rgba(0,113,227,0.06);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--apple-text);
+    margin-bottom: 20px;
+    text-align: left;
+    line-height: 1.5;
+  }
+  .result-actions{
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-secondary{
+    background: var(--apple-bg-secondary);
+    color: var(--apple-text);
+    padding: 12px 24px;
+    border-radius: 980px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+  .btn-secondary:hover{ background: var(--apple-border-light); }
+
+  /* =========================================================
+     Acessórios — grid de produtos estilo Apple Store
+     ========================================================= */
+  .accessories-section{
+    padding: 100px 22px;
+    background: var(--apple-bg);
+  }
+  .accessories-filters{
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .filter-chip{
+    background: var(--apple-bg-secondary);
+    color: var(--apple-text);
+    padding: 10px 20px;
+    border-radius: 980px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  .filter-chip:hover{
+    background: var(--apple-border-light);
+  }
+  .filter-chip.active{
+    background: var(--apple-text);
+    color: white;
+  }
+  .products-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  .product-card{
+    background: var(--apple-bg-secondary);
+    border-radius: 18px;
+    padding: 24px 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card:hover{
+    transform: translateY(-3px);
+    box-shadow: var(--apple-shadow-md);
+  }
+  .product-badge{
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--apple-warning);
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 980px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .product-badge.new{ background: var(--apple-blue); }
+  .product-badge.sale{ background: var(--apple-danger); }
+  .product-image{
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    margin-bottom: 16px;
+    background: white;
+    border-radius: 14px;
+  }
+  .product-category{
+    font-size: 11px;
+    color: var(--apple-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .product-name{
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--apple-text);
+    margin-bottom: 4px;
+    line-height: 1.3;
+    min-height: 38px;
+  }
+  .product-rating{
+    font-size: 12px;
+    color: var(--apple-text-secondary);
+    margin-bottom: 10px;
+  }
+  .product-rating .stars{ color: var(--apple-warning); }
+  .product-price{
+    margin-top: auto;
+    margin-bottom: 12px;
+  }
+  .product-price-value{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--apple-text);
+  }
+  .product-price-old{
+    font-size: 12px;
+    color: var(--apple-text-tertiary);
+    text-decoration: line-through;
+    margin-left: 6px;
+  }
+  .product-price-installment{
+    display: block;
+    font-size: 11px;
+    color: var(--apple-text-secondary);
+    margin-top: 2px;
+  }
+  .product-buy{
+    background: var(--apple-blue);
+    color: white;
+    padding: 9px 16px;
+    border-radius: 980px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+  .product-buy:hover{
+    background: var(--apple-blue-hover);
+  }
+  .accessories-cta{
+    text-align: center;
+    margin-top: 48px;
+  }
+  .accessories-cta a{
+    color: var(--apple-link);
+    font-size: 17px;
+  }
+  .accessories-cta a::after{ content: ' ›'; }
+
+  /* Banner-destaque na home */
+  .accessory-banner-section{
+    padding: 0 22px 40px;
+  }
+  .accessory-banner{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: 1024px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+    border-radius: 22px;
+    padding: 60px 50px;
+    color: white;
+    text-decoration: none !important;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .accessory-banner:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--apple-shadow-lg);
+  }
+  .accessory-banner::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(0,113,227,0.18) 0, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(255,149,0,0.12) 0, transparent 50%);
+    pointer-events: none;
+  }
+  .accessory-banner-content{ position: relative; z-index:1; }
+  .accessory-banner-eyebrow{
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #a1a1a6;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .accessory-banner-title{
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .accessory-banner-sub{
+    font-size: 17px;
+    color: #c7c7cc;
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  .accessory-banner-cta{
+    display: inline-block;
+    background: white;
+    color: #1d1d1f;
+    padding: 12px 22px;
+    border-radius: 980px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+  .accessory-banner:hover .accessory-banner-cta{
+    background: #f5f5f7;
+  }
+  .accessory-banner-visual{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 834px){
+    .accessory-banner{
+      grid-template-columns: 1fr;
+      padding: 40px 28px;
+      text-align: center;
+    }
+    .accessory-banner-title{ font-size: 28px; }
+    .accessory-banner-visual{ margin-top: 28px; gap: 16px; }
+    .accessory-banner-visual span{ font-size: 48px !important; }
+  }
+
+  /* =========================================================
+     Footer — estilo Apple com colunas
+     ========================================================= */
+  .footer{
+    background: var(--apple-bg-secondary);
+    color: var(--apple-text-secondary);
+    padding: 40px 22px 24px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .footer-inner{
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  .footer-disclaimer{
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--apple-border-light);
+    margin-bottom: 20px;
+  }
+  .footer-cols{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--apple-border-light);
+    margin-bottom: 16px;
+  }
+  .footer-col h4{
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--apple-text);
+    margin-bottom: 10px;
+  }
+  .footer-col ul{
+    list-style: none;
+  }
+  .footer-col ul li{
+    margin-bottom: 8px;
+  }
+  .footer-col a{
+    color: var(--apple-text-secondary);
+    font-size: 12px;
+  }
+  .footer-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* =========================================================
+     Responsivo
+     ========================================================= */
+  @media (max-width: 834px){
+    .hero-title{ font-size: 40px; }
+    .hero-subtitle{ font-size: 21px; }
+    .hero-media{ aspect-ratio: 4 / 3; }
+    .tile-grid{ grid-template-columns: 1fr; }
+    .tile{ min-height: 420px; padding: 40px 32px; }
+    .tile-title{ font-size: 36px; }
+    .tile-visual{ font-size: 160px; }
+    .services-grid{ grid-template-columns: 1fr; }
+    .footer-cols{ grid-template-columns: repeat(2, 1fr); }
+    .quote-card{ padding: 32px 24px; }
+    .step-question{ font-size: 22px; }
+    .options-grid{ grid-template-columns: 1fr; }
+    .nav-links{ display: none; }
+    .section-heading{ font-size: 32px; }
+    .top-bar-inner > div:first-child{ display: none; }
+    .products-grid{ grid-template-columns: repeat(2, 1fr); }
+    .brand-pill{ padding: 14px 22px; }
+    .brand-pill-name{ font-size: 14px; }
+  }
+
+  @media (max-width: 480px){
+    .hero{ padding: 40px 16px 60px; }
+    .hero-title{ font-size: 32px; }
+    .hero-subtitle{ font-size: 18px; }
+    .footer-cols{ grid-template-columns: 1fr; gap: 20px; }
+    .quote-card{ padding: 24px 18px; }
+    .products-grid{ grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============== TOP BAR ============== -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div>Atendimento de seg. a sáb. — 9h às 19h</div>
+    <div>
+      <a href="#contato">Contato</a> &nbsp;·&nbsp;
+      <a href="https://wa.me/5511999999999">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============== NAVBAR ============== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Tech<span>Fix</span></a>
+    <ul class="nav-links">
+      <li><a href="#celulares">Celulares</a></li>
+      <li><a href="#computadores">Computadores</a></li>
+      <li><a href="#games">Games</a></li>
+      <li><a href="acessorios.html">Acessórios</a></li>
+      <li><a href="#marcas">Marcas</a></li>
+      <li><a href="#orcamento">Orçamento</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="#orcamento" class="nav-cta">Orçamento online</a>
+  </div>
+</nav>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="hero-eyebrow">Assistência Técnica Premium</div>
+  <h1 class="hero-title">Conserto rápido.<br/>Confiança que dura.</h1>
+  <p class="hero-subtitle">Celulares, computadores e consoles em um só lugar. Diagnóstico gratuito e orçamento em segundos.</p>
+  <div class="hero-actions">
+    <a href="#orcamento" class="btn-primary">Gerar orçamento</a>
+    <a href="#servicos">Conheça os serviços</a>
+  </div>
+  <div class="hero-media">
+    <!-- Quando tiver a foto da oficina, descomente a linha abaixo e remova o placeholder -->
+    <!-- <img src="hero.jpg" alt="Oficina TechFix" /> -->
+    <div class="hero-media-placeholder"></div>
+  </div>
+</section>
+
+<!-- ============== TILES PRINCIPAIS ============== -->
+<section class="tile-grid" id="servicos">
+
+  <div class="tile" data-theme="celulares" id="celulares" onclick="document.getElementById('orcamento').scrollIntoView({behavior:'smooth'})">
+    <div class="tile-bg"></div>
+    <div class="tile-visual">📱</div>
+    <span class="tile-badge"><span class="tile-badge-dot"></span>Pronta entrega</span>
+    <div class="tile-eyebrow">Smartphones · Todas as marcas</div>
+    <h2 class="tile-title">Celulares.</h2>
+    <p class="tile-subtitle">Conserto rápido com peças originais. iPhone, Samsung, Xiaomi, Motorola e mais.</p>
+    <ul class="tile-features">
+      <li>Tela, bateria e conector de carga</li>
+      <li>Câmera, alto-falante e placa lógica</li>
+      <li>Garantia de 90 dias inclusa</li>
+    </ul>
+    <div class="tile-actions">
+      <a class="tile-btn is-primary" href="#orcamento">Gerar orçamento</a>
+      <a class="tile-link" href="#orcamento">Ver serviços</a>
+    </div>
+  </div>
+
+  <div class="tile" data-theme="computadores" id="computadores" onclick="document.getElementById('orcamento').scrollIntoView({behavior:'smooth'})">
+    <div class="tile-bg"></div>
+    <div class="tile-visual">💻</div>
+    <span class="tile-badge"><span class="tile-badge-dot"></span>Pronto em 24h</span>
+    <div class="tile-eyebrow">PC e Notebook</div>
+    <h2 class="tile-title">Formatação<br/>e upgrade.</h2>
+    <p class="tile-subtitle">Sistema novo, troca de HD por SSD e melhoria de desempenho.</p>
+    <ul class="tile-features">
+      <li>Windows formatado em até 24h</li>
+      <li>Upgrade pra SSD: até 10x mais rápido</li>
+      <li>Backup automático dos seus arquivos</li>
+    </ul>
+    <div class="tile-actions">
+      <a class="tile-btn is-primary" href="#orcamento">Gerar orçamento</a>
+      <a class="tile-link" href="#orcamento">Ver serviços</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============== TILES SECUNDÁRIAS ============== -->
+<section class="tile-grid" id="games">
+
+  <div class="tile" data-theme="ps5" onclick="document.getElementById('orcamento').scrollIntoView({behavior:'smooth'})">
+    <div class="tile-bg"></div>
+    <div class="tile-visual">🎮</div>
+    <span class="tile-badge"><span class="tile-badge-dot"></span>Especialista certificado</span>
+    <div class="tile-eyebrow">Consoles Sony</div>
+    <h2 class="tile-title">PlayStation 5.</h2>
+    <p class="tile-subtitle">Manutenção completa pra seu PS5 voltar a rodar como saiu da caixa.</p>
+    <ul class="tile-features">
+      <li>Limpeza interna e pasta térmica</li>
+      <li>Conserto de HDMI e leitor de disco</li>
+      <li>Reparo de drift no DualSense</li>
+    </ul>
+    <div class="tile-actions">
+      <a class="tile-btn is-primary" href="#orcamento">Gerar orçamento</a>
+      <a class="tile-link" href="#orcamento">Ver serviços</a>
+    </div>
+  </div>
+
+  <div class="tile" data-theme="xbox" onclick="document.getElementById('orcamento').scrollIntoView({behavior:'smooth'})">
+    <div class="tile-bg"></div>
+    <div class="tile-visual">🕹️</div>
+    <span class="tile-badge"><span class="tile-badge-dot"></span>Series e One</span>
+    <div class="tile-eyebrow">Consoles Microsoft</div>
+    <h2 class="tile-title">Xbox.</h2>
+    <p class="tile-subtitle">Series X/S e One — manutenção, troca de fonte e drive ótico.</p>
+    <ul class="tile-features">
+      <li>Limpeza completa e pasta térmica</li>
+      <li>Troca de fonte e leitor de Blu-ray</li>
+      <li>Reparo de controles e drift</li>
+    </ul>
+    <div class="tile-actions">
+      <a class="tile-btn is-primary" href="#orcamento">Gerar orçamento</a>
+      <a class="tile-link" href="#orcamento">Ver serviços</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============== MARCAS ATENDIDAS ============== -->
+<section class="brands-section" id="marcas">
+  <div class="brands-header">
+    <h2 class="section-heading">Atendemos todas as marcas.</h2>
+    <p class="section-sub" style="margin-bottom:0;">Da Apple à Xiaomi. Do PlayStation ao Xbox. Peças originais e garantia em todo serviço.</p>
+    <div class="brands-stat">
+      <span class="brands-stat-dot"></span>
+      <span><strong>+50 marcas</strong> atendidas com garantia</span>
+    </div>
+  </div>
+
+  <!-- Faixa 1: rola pra esquerda -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="brand-pill"><span class="brand-pill-logo"></span><span class="brand-pill-name">Apple</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">📱</span><span class="brand-pill-name">Samsung</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🔶</span><span class="brand-pill-name">Xiaomi</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🅜</span><span class="brand-pill-name">Motorola</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🔵</span><span class="brand-pill-name">LG</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🎯</span><span class="brand-pill-name">Realme</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">📲</span><span class="brand-pill-name">Google Pixel</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🌟</span><span class="brand-pill-name">OnePlus</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">💫</span><span class="brand-pill-name">Huawei</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">📞</span><span class="brand-pill-name">Nokia</span></div>
+      <!-- Duplicação para loop infinito -->
+      <div class="brand-pill"><span class="brand-pill-logo"></span><span class="brand-pill-name">Apple</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">📱</span><span class="brand-pill-name">Samsung</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🔶</span><span class="brand-pill-name">Xiaomi</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🅜</span><span class="brand-pill-name">Motorola</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🔵</span><span class="brand-pill-name">LG</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🎯</span><span class="brand-pill-name">Realme</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">📲</span><span class="brand-pill-name">Google Pixel</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🌟</span><span class="brand-pill-name">OnePlus</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">💫</span><span class="brand-pill-name">Huawei</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">📞</span><span class="brand-pill-name">Nokia</span></div>
+    </div>
+  </div>
+
+  <!-- Faixa 2: rola pra direita (sentido oposto) -->
+  <div class="marquee">
+    <div class="marquee-track is-reverse">
+      <div class="brand-pill"><span class="brand-pill-logo">⚡</span><span class="brand-pill-name">Asus</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🔷</span><span class="brand-pill-name">Dell</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">💼</span><span class="brand-pill-name">Lenovo</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🅷</span><span class="brand-pill-name">HP</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🅰</span><span class="brand-pill-name">Acer</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🎮</span><span class="brand-pill-name">PlayStation</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🕹️</span><span class="brand-pill-name">Xbox</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🎯</span><span class="brand-pill-name">Nintendo</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🖥️</span><span class="brand-pill-name">Positivo</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">💻</span><span class="brand-pill-name">Vaio</span></div>
+      <!-- Duplicação para loop infinito -->
+      <div class="brand-pill"><span class="brand-pill-logo">⚡</span><span class="brand-pill-name">Asus</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🔷</span><span class="brand-pill-name">Dell</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">💼</span><span class="brand-pill-name">Lenovo</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🅷</span><span class="brand-pill-name">HP</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🅰</span><span class="brand-pill-name">Acer</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🎮</span><span class="brand-pill-name">PlayStation</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🕹️</span><span class="brand-pill-name">Xbox</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🎯</span><span class="brand-pill-name">Nintendo</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">🖥️</span><span class="brand-pill-name">Positivo</span></div>
+      <div class="brand-pill"><span class="brand-pill-logo">💻</span><span class="brand-pill-name">Vaio</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SERVIÇOS DETALHE ============== -->
+<section class="section">
+  <div class="section-inner">
+    <h2 class="section-heading">O que fazemos.</h2>
+    <p class="section-sub">Equipe especializada, peças originais e diagnóstico transparente.</p>
+    <div class="services-grid">
+
+      <div class="service-card" data-accent="blue" onclick="document.getElementById('orcamento').scrollIntoView({behavior:'smooth'})">
+        <div class="service-header">
+          <div class="service-icon">📱</div>
+          <span class="service-tag">Reparo</span>
+        </div>
+        <h3 class="service-title">Reparo de Celulares</h3>
+        <p class="service-desc">Troca de tela, bateria, conector de carga, traseira de vidro, alto-falante, câmera e placa lógica. iPhone, Samsung, Xiaomi, Motorola e mais.</p>
+        <div class="service-footer">
+          <div class="service-price">
+            <span class="service-price-label">A partir de</span>
+            <span class="service-price-value">R$ 120</span>
+          </div>
+          <span class="service-link">Orçamento</span>
+        </div>
+      </div>
+
+      <div class="service-card" data-accent="purple" onclick="document.getElementById('orcamento').scrollIntoView({behavior:'smooth'})">
+        <div class="service-header">
+          <div class="service-icon">💻</div>
+          <span class="service-tag">Software</span>
+        </div>
+        <h3 class="service-title">Formatação de PC</h3>
+        <p class="service-desc">Instalação limpa do Windows, drivers atualizados, pacote essencial e backup dos seus arquivos — tudo em até 24h.</p>
+        <div class="service-footer">
+          <div class="service-price">
+            <span class="service-price-label">A partir de</span>
+            <span class="service-price-value">R$ 120</span>
+          </div>
+          <span class="service-link">Orçamento</span>
+        </div>
+      </div>
+
+      <div class="service-card" data-accent="green" onclick="document.getElementById('orcamento').scrollIntoView({behavior:'smooth'})">
+        <div class="service-header">
+          <div class="service-icon">💾</div>
+          <span class="service-tag">Hardware</span>
+        </div>
+        <h3 class="service-title">Upgrade de HD para SSD</h3>
+        <p class="service-desc">Seu computador até 10x mais rápido. Clonagem do sistema sem perder seus arquivos e instalação de SSDs de marcas premium.</p>
+        <div class="service-footer">
+          <div class="service-price">
+            <span class="service-price-label">A partir de</span>
+            <span class="service-price-value">R$ 280</span>
+          </div>
+          <span class="service-link">Orçamento</span>
+        </div>
+      </div>
+
+      <div class="service-card" data-accent="orange" onclick="document.getElementById('orcamento').scrollIntoView({behavior:'smooth'})">
+        <div class="service-header">
+          <div class="service-icon">🎮</div>
+          <span class="service-tag">Consoles</span>
+        </div>
+        <h3 class="service-title">Manutenção de Consoles</h3>
+        <p class="service-desc">PS5, PS4, Xbox Series e One. Limpeza completa, troca de pasta térmica, conserto de HDMI, fonte e leitor de disco.</p>
+        <div class="service-footer">
+          <div class="service-price">
+            <span class="service-price-label">A partir de</span>
+            <span class="service-price-value">R$ 160</span>
+          </div>
+          <span class="service-link">Orçamento</span>
+        </div>
+      </div>
+
+      <div class="service-card is-info" data-accent="teal" onclick="window.open('https://wa.me/5511999999999?text=' + encodeURIComponent('Olá! Quero agendar um diagnóstico gratuito.'), '_blank')">
+        <div class="service-header">
+          <div class="service-icon">🛠️</div>
+          <span class="service-tag">Grátis</span>
+        </div>
+        <h3 class="service-title">Diagnóstico Gratuito</h3>
+        <p class="service-desc">Levou pra outro lugar e cobraram pra avaliar? Aqui o diagnóstico é gratuito e o orçamento sem compromisso.</p>
+        <div class="service-footer">
+          <span class="service-link">Agendar agora</span>
+        </div>
+      </div>
+
+      <div class="service-card is-info" data-accent="pink" onclick="window.open('https://wa.me/5511999999999?text=' + encodeURIComponent('Olá! Tenho uma dúvida sobre a garantia de 90 dias.'), '_blank')">
+        <div class="service-header">
+          <div class="service-icon">🛡️</div>
+          <span class="service-tag">Incluso</span>
+        </div>
+        <h3 class="service-title">Garantia de 90 dias</h3>
+        <p class="service-desc">Todo serviço acompanha 90 dias de garantia em peças e mão de obra. Confiança que você sente.</p>
+        <div class="service-footer">
+          <span class="service-link">Saiba mais</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== BANNER ACESSÓRIOS ============== -->
+<section class="accessory-banner-section">
+  <a href="acessorios.html" class="accessory-banner">
+    <div class="accessory-banner-content">
+      <div class="accessory-banner-eyebrow">Loja</div>
+      <h2 class="accessory-banner-title">Acessórios para o seu dia a dia.</h2>
+      <p class="accessory-banner-sub">Películas, capinhas, carregadores, fones e caixas de som Bluetooth — selecionados pra durar.</p>
+      <span class="accessory-banner-cta">Ver loja completa</span>
+    </div>
+    <div class="accessory-banner-visual">
+      <span style="font-size:64px">🎧</span>
+      <span style="font-size:80px">📱</span>
+      <span style="font-size:64px">🔊</span>
+    </div>
+  </a>
+</section>
+
+<!-- ============== AUTO-ATENDIMENTO / ORÇAMENTO ============== -->
+<section class="quote-section" id="orcamento">
+  <div style="max-width:1024px;margin:0 auto;text-align:center;">
+    <h2 class="section-heading">Orçamento em 60 segundos.</h2>
+    <p class="section-sub">Responda algumas perguntas e receba uma estimativa imediata. Sem cadastro, sem espera.</p>
+  </div>
+
+  <div class="quote-card" id="quoteCard">
+    <div class="progress-bar">
+      <div class="progress-step active" data-step="1"></div>
+      <div class="progress-step" data-step="2"></div>
+      <div class="progress-step" data-step="3"></div>
+      <div class="progress-step" data-step="4"></div>
+      <div class="progress-step" data-step="5"></div>
+    </div>
+
+    <!-- STEP 1: Categoria -->
+    <div class="quote-step active" data-step="1">
+      <div class="step-label">Etapa 1 de 5</div>
+      <h3 class="step-question">Qual aparelho precisa de atenção?</h3>
+      <p class="step-hint">Escolha a categoria do seu equipamento.</p>
+      <div class="options-grid">
+        <button class="option-card" data-value="celular">
+          <span class="option-icon">📱</span>
+          <span class="option-text">Celular<span class="option-desc">Smartphone iOS ou Android</span></span>
+        </button>
+        <button class="option-card" data-value="computador">
+          <span class="option-icon">💻</span>
+          <span class="option-text">Computador<span class="option-desc">Desktop ou notebook</span></span>
+        </button>
+        <button class="option-card" data-value="ps5">
+          <span class="option-icon">🎮</span>
+          <span class="option-text">PlayStation 5<span class="option-desc">Standard ou Slim</span></span>
+        </button>
+        <button class="option-card" data-value="xbox">
+          <span class="option-icon">🕹️</span>
+          <span class="option-text">Xbox<span class="option-desc">Series X/S ou One</span></span>
+        </button>
+      </div>
+      <div class="step-actions">
+        <button class="btn-next" disabled onclick="nextStep()">Continuar</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Marca / modelo (preenchido dinamicamente) -->
+    <div class="quote-step" data-step="2">
+      <div class="step-label">Etapa 2 de 5</div>
+      <h3 class="step-question" id="step2Question">Qual a marca?</h3>
+      <p class="step-hint" id="step2Hint">Selecione para um orçamento mais preciso.</p>
+      <div class="options-grid" id="step2Options"></div>
+      <div class="step-actions">
+        <button class="btn-back" onclick="prevStep()">‹ Voltar</button>
+        <button class="btn-next" disabled onclick="nextStep()">Continuar</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Tipo de problema -->
+    <div class="quote-step" data-step="3">
+      <div class="step-label">Etapa 3 de 5</div>
+      <h3 class="step-question">Qual é o problema?</h3>
+      <p class="step-hint">Pode escolher mais de um se for o caso.</p>
+      <div class="options-grid" id="step3Options"></div>
+      <div class="step-actions">
+        <button class="btn-back" onclick="prevStep()">‹ Voltar</button>
+        <button class="btn-next" disabled onclick="nextStep()">Continuar</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Detalhes -->
+    <div class="quote-step" data-step="4">
+      <div class="step-label">Etapa 4 de 5</div>
+      <h3 class="step-question">Conte um pouco mais.</h3>
+      <p class="step-hint">Quanto mais detalhes, mais preciso o orçamento.</p>
+      <div class="form-group">
+        <label class="form-label" for="modelDetail">Modelo exato (opcional)</label>
+        <input class="form-input" type="text" id="modelDetail" placeholder="Ex.: iPhone 13 Pro 128GB, Notebook Dell Inspiron 15..." />
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="problemDetail">Descreva o problema (opcional)</label>
+        <textarea class="form-textarea" id="problemDetail" placeholder="Ex.: caiu no chão, tela trincou e parou de responder ao toque..."></textarea>
+      </div>
+      <div class="step-actions">
+        <button class="btn-back" onclick="prevStep()">‹ Voltar</button>
+        <button class="btn-next" onclick="nextStep()">Ver orçamento</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Resultado -->
+    <div class="quote-step" data-step="5">
+      <div class="quote-result">
+        <div class="result-icon">✓</div>
+        <h3 class="result-title">Seu orçamento está pronto.</h3>
+        <p class="result-sub" id="resultSub">Estimativa baseada nas informações fornecidas.</p>
+
+        <div class="price-box" id="priceBox"></div>
+
+        <div class="result-meta" id="resultMeta"></div>
+
+        <div class="form-group" style="text-align:left; margin-top:8px;">
+          <label class="form-label" for="contactName">Seu nome (para finalizar)</label>
+          <input class="form-input" type="text" id="contactName" placeholder="Como podemos te chamar?" />
+        </div>
+        <div class="form-group" style="text-align:left;">
+          <label class="form-label" for="contactPhone">WhatsApp</label>
+          <input class="form-input" type="tel" id="contactPhone" placeholder="(11) 99999-9999" />
+        </div>
+
+        <div class="result-actions">
+          <a href="#" class="btn-primary" id="whatsappBtn" target="_blank" rel="noopener">Enviar via WhatsApp</a>
+          <button class="btn-secondary" onclick="resetQuote()">Refazer orçamento</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer" id="contato">
+  <div class="footer-inner">
+    <div class="footer-disclaimer">
+      Os valores apresentados pelo orçamento online são estimativas baseadas em casos comuns. O orçamento final é confirmado após avaliação técnica do equipamento, que é gratuita e sem compromisso. Garantia de 90 dias em peças e serviços.
+    </div>
+
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#celulares">Celulares</a></li>
+          <li><a href="#computadores">Formatação</a></li>
+          <li><a href="#computadores">Troca de HD/SSD</a></li>
+          <li><a href="#games">PlayStation</a></li>
+          <li><a href="#games">Xbox</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Acessórios</h4>
+        <ul>
+          <li><a href="acessorios.html?cat=pelicula">Películas</a></li>
+          <li><a href="acessorios.html?cat=capinha">Capinhas</a></li>
+          <li><a href="acessorios.html?cat=carregador">Carregadores</a></li>
+          <li><a href="acessorios.html?cat=audio">Caixas de som</a></li>
+          <li><a href="acessorios.html?cat=audio">Fones</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Marcas</h4>
+        <ul>
+          <li><a href="#marcas">Apple</a></li>
+          <li><a href="#marcas">Samsung</a></li>
+          <li><a href="#marcas">Xiaomi</a></li>
+          <li><a href="#marcas">Motorola</a></li>
+          <li><a href="#marcas">Ver todas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Atendimento</h4>
+        <ul>
+          <li><a href="#orcamento">Orçamento online</a></li>
+          <li><a href="https://wa.me/5511999999999">WhatsApp</a></li>
+          <li><a href="tel:+5511999999999">(11) 9999-9999</a></li>
+          <li><a href="mailto:contato@techfix.com.br">contato@techfix.com.br</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>A TechFix</h4>
+        <ul>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Garantia</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>Copyright © 2026 TechFix Assistência Técnica. Todos os direitos reservados.</div>
+      <div>Brasil · Português</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================
+     Catálogo de problemas, marcas e preços
+     ========================================================= */
+  const CATALOG = {
+    celular: {
+      label: 'Celular',
+      brands: ['Apple (iPhone)', 'Samsung', 'Xiaomi', 'Motorola', 'LG', 'Outra marca'],
+      problems: [
+        { id:'tela',       icon:'🖥️', label:'Tela quebrada / trincada',     min:280,  max:1900, time:'1 a 3 dias' },
+        { id:'bateria',    icon:'🔋', label:'Bateria viciada / não segura', min:180,  max:650,  time:'até 24h' },
+        { id:'carga',      icon:'🔌', label:'Não carrega / conector',       min:150,  max:520,  time:'1 a 2 dias' },
+        { id:'molhou',     icon:'💧', label:'Caiu na água / oxidação',      min:200,  max:1200, time:'2 a 5 dias' },
+        { id:'placa',      icon:'⚙️', label:'Não liga / problema na placa', min:380,  max:1800, time:'3 a 7 dias' },
+        { id:'camera',     icon:'📸', label:'Câmera com defeito',           min:220,  max:980,  time:'2 a 4 dias' },
+        { id:'audio',      icon:'🔈', label:'Som / microfone / alto-falante', min:120, max:480, time:'1 a 2 dias' },
+        { id:'traseira',   icon:'🪟', label:'Tampa traseira de vidro',      min:160,  max:780,  time:'1 a 3 dias' },
+      ]
+    },
+    computador: {
+      label: 'Computador',
+      brands: ['Notebook Dell', 'Notebook Lenovo', 'Notebook HP', 'Notebook Asus', 'Notebook Acer', 'Apple (Mac)', 'Desktop / Gamer', 'Outra marca'],
+      problems: [
+        { id:'format',  icon:'💿', label:'Formatação completa (Windows)',  min:120, max:220, time:'até 24h' },
+        { id:'ssd',     icon:'⚡', label:'Troca de HD por SSD',            min:280, max:780, time:'1 a 2 dias' },
+        { id:'lento',   icon:'🐌', label:'Está muito lento',               min:90,  max:280, time:'até 24h' },
+        { id:'virus',   icon:'🦠', label:'Vírus / malware',                min:120, max:260, time:'1 dia' },
+        { id:'naoliga', icon:'🔌', label:'Não liga',                       min:180, max:980, time:'2 a 5 dias' },
+        { id:'tela',    icon:'🖥️', label:'Troca de tela',                  min:380, max:1500, time:'2 a 4 dias' },
+        { id:'bat',     icon:'🔋', label:'Bateria do notebook',            min:280, max:680, time:'1 a 2 dias' },
+        { id:'limpeza', icon:'🧹', label:'Limpeza interna + pasta térmica', min:120, max:240, time:'até 24h' },
+        { id:'teclado', icon:'⌨️', label:'Teclado com defeito',            min:180, max:520, time:'1 a 3 dias' },
+        { id:'upgrade', icon:'📈', label:'Upgrade de memória RAM',         min:180, max:680, time:'1 dia' },
+      ]
+    },
+    ps5: {
+      label: 'PlayStation 5',
+      brands: ['PS5 Standard (com leitor)', 'PS5 Digital Edition', 'PS5 Slim', 'PS5 Pro'],
+      problems: [
+        { id:'limpeza', icon:'🧹', label:'Limpeza + pasta térmica (preventiva)', min:180, max:280, time:'1 a 2 dias' },
+        { id:'super',   icon:'🔥', label:'Esquentando / desligando sozinho',     min:220, max:520, time:'2 a 3 dias' },
+        { id:'hdmi',    icon:'🖥️', label:'Sem imagem / HDMI queimado',           min:380, max:780, time:'3 a 5 dias' },
+        { id:'leitor',  icon:'💿', label:'Leitor de disco não lê / não puxa',    min:280, max:780, time:'2 a 4 dias' },
+        { id:'naoliga', icon:'🔌', label:'Não liga',                              min:380, max:1200, time:'3 a 7 dias' },
+        { id:'controle',icon:'🎮', label:'Controle com drift / botão',           min:120, max:280, time:'1 a 2 dias' },
+        { id:'fonte',   icon:'⚡', label:'Fonte com defeito',                    min:280, max:580, time:'2 a 3 dias' },
+      ]
+    },
+    xbox: {
+      label: 'Xbox',
+      brands: ['Xbox Series X', 'Xbox Series S', 'Xbox One X', 'Xbox One S', 'Xbox One'],
+      problems: [
+        { id:'limpeza', icon:'🧹', label:'Limpeza + pasta térmica (preventiva)', min:160, max:260, time:'1 a 2 dias' },
+        { id:'super',   icon:'🔥', label:'Esquentando / desligando sozinho',     min:200, max:480, time:'2 a 3 dias' },
+        { id:'hdmi',    icon:'🖥️', label:'Sem imagem / HDMI queimado',           min:340, max:720, time:'3 a 5 dias' },
+        { id:'leitor',  icon:'💿', label:'Leitor de disco não lê',                min:260, max:720, time:'2 a 4 dias' },
+        { id:'naoliga', icon:'🔌', label:'Não liga',                              min:340, max:1100, time:'3 a 7 dias' },
+        { id:'controle',icon:'🎮', label:'Controle com drift / botão',           min:120, max:280, time:'1 a 2 dias' },
+        { id:'fonte',   icon:'⚡', label:'Fonte com defeito',                    min:260, max:540, time:'2 a 3 dias' },
+      ]
+    }
+  };
+
+  /* =========================================================
+     Estado do formulário
+     ========================================================= */
+  const state = {
+    step: 1,
+    category: null,
+    brand: null,
+    problems: [],
+    model: '',
+    description: ''
+  };
+
+  /* =========================================================
+     STEP 1 — Seleção de categoria
+     ========================================================= */
+  document.querySelectorAll('.quote-step[data-step="1"] .option-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.quote-step[data-step="1"] .option-card')
+        .forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      state.category = card.dataset.value;
+      document.querySelector('.quote-step[data-step="1"] .btn-next').disabled = false;
+    });
+  });
+
+  /* =========================================================
+     Helpers de navegação
+     ========================================================= */
+  function showStep(n){
+    state.step = n;
+    document.querySelectorAll('.quote-step').forEach(el => el.classList.remove('active'));
+    document.querySelector('.quote-step[data-step="'+n+'"]').classList.add('active');
+    document.querySelectorAll('.progress-step').forEach(el => {
+      const s = parseInt(el.dataset.step, 10);
+      el.classList.remove('active', 'complete');
+      if (s < n) el.classList.add('complete');
+      else if (s === n) el.classList.add('active');
+    });
+    document.getElementById('quoteCard').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function nextStep(){
+    if (state.step === 1) {
+      buildStep2();
+      showStep(2);
+    } else if (state.step === 2) {
+      buildStep3();
+      showStep(3);
+    } else if (state.step === 3) {
+      showStep(4);
+    } else if (state.step === 4) {
+      state.model = document.getElementById('modelDetail').value.trim();
+      state.description = document.getElementById('problemDetail').value.trim();
+      buildResult();
+      showStep(5);
+    }
+  }
+
+  function prevStep(){
+    if (state.step > 1) showStep(state.step - 1);
+  }
+
+  /* =========================================================
+     STEP 2 — Marca
+     ========================================================= */
+  function buildStep2(){
+    const cat = CATALOG[state.category];
+    document.getElementById('step2Question').textContent =
+      state.category === 'computador' ? 'Qual o modelo do computador?'
+      : state.category === 'celular'  ? 'Qual a marca do celular?'
+      : 'Qual a versão do console?';
+    const container = document.getElementById('step2Options');
+    container.innerHTML = '';
+    cat.brands.forEach(brand => {
+      const btn = document.createElement('button');
+      btn.className = 'option-card';
+      btn.innerHTML = '<span class="option-text">' + brand + '</span>';
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.brand = brand;
+        document.querySelector('.quote-step[data-step="2"] .btn-next').disabled = false;
+      });
+      container.appendChild(btn);
+    });
+    document.querySelector('.quote-step[data-step="2"] .btn-next').disabled = true;
+    state.brand = null;
+  }
+
+  /* =========================================================
+     STEP 3 — Problemas (multi-select)
+     ========================================================= */
+  function buildStep3(){
+    const cat = CATALOG[state.category];
+    const container = document.getElementById('step3Options');
+    container.innerHTML = '';
+    state.problems = [];
+    cat.problems.forEach(p => {
+      const btn = document.createElement('button');
+      btn.className = 'option-card';
+      btn.innerHTML =
+        '<span class="option-icon">' + p.icon + '</span>' +
+        '<span class="option-text">' + p.label + '</span>';
+      btn.addEventListener('click', () => {
+        const idx = state.problems.findIndex(x => x.id === p.id);
+        if (idx >= 0) {
+          state.problems.splice(idx, 1);
+          btn.classList.remove('selected');
+        } else {
+          state.problems.push(p);
+          btn.classList.add('selected');
+        }
+        document.querySelector('.quote-step[data-step="3"] .btn-next').disabled =
+          state.problems.length === 0;
+      });
+      container.appendChild(btn);
+    });
+    document.querySelector('.quote-step[data-step="3"] .btn-next').disabled = true;
+  }
+
+  /* =========================================================
+     STEP 5 — Cálculo do orçamento
+     ========================================================= */
+  function brl(n){
+    return n.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+  }
+
+  function buildResult(){
+    const box = document.getElementById('priceBox');
+    box.innerHTML = '';
+
+    let totalMin = 0, totalMax = 0;
+    state.problems.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'price-row';
+      row.innerHTML =
+        '<span class="price-label">' + p.label + '</span>' +
+        '<span>' + brl(p.min) + ' – ' + brl(p.max) + '</span>';
+      box.appendChild(row);
+      totalMin += p.min;
+      totalMax += p.max;
+    });
+
+    // Desconto progressivo quando há mais de um serviço
+    let discount = 0;
+    if (state.problems.length >= 3) discount = 0.15;
+    else if (state.problems.length === 2) discount = 0.08;
+
+    if (discount > 0) {
+      const dRow = document.createElement('div');
+      dRow.className = 'price-row';
+      dRow.innerHTML =
+        '<span class="price-label">Desconto combo (' + (discount*100) + '%)</span>' +
+        '<span style="color:var(--apple-success)">- ' + brl((totalMin+totalMax)/2 * discount) + '</span>';
+      box.appendChild(dRow);
+      totalMin = Math.round(totalMin * (1 - discount));
+      totalMax = Math.round(totalMax * (1 - discount));
+    }
+
+    const total = document.createElement('div');
+    total.className = 'price-row total';
+    total.innerHTML =
+      '<span class="price-label">Estimativa total</span>' +
+      '<span>' + brl(totalMin) + ' – ' + brl(totalMax) + '</span>';
+    box.appendChild(total);
+
+    // Tempo médio: o maior entre os escolhidos
+    const times = state.problems.map(p => p.time);
+    const maxTime = times[times.length - 1] || times[0];
+
+    document.getElementById('resultSub').textContent =
+      CATALOG[state.category].label + (state.brand ? ' · ' + state.brand : '');
+
+    document.getElementById('resultMeta').innerHTML =
+      '<strong>⏱ Prazo estimado:</strong> ' + maxTime + '<br/>' +
+      '<strong>🛡 Garantia:</strong> 90 dias em peças e serviço<br/>' +
+      '<strong>💳 Pagamento:</strong> à vista 5% off · cartão até 6x sem juros<br/>' +
+      '<strong>🔍 Diagnóstico:</strong> gratuito e sem compromisso';
+
+    // Botão WhatsApp dinâmico
+    document.getElementById('whatsappBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value.trim() || 'Cliente';
+      const phone = document.getElementById('contactPhone').value.trim();
+      const probList = state.problems.map(p => '• ' + p.label).join('\n');
+      const msg =
+`Olá! Sou ${name} e gostaria de confirmar um orçamento gerado no site.
+
+📦 Aparelho: ${CATALOG[state.category].label}${state.brand ? ' · ' + state.brand : ''}
+${state.model ? '🔖 Modelo: ' + state.model + '\n' : ''}
+🔧 Serviços:
+${probList}
+
+💰 Estimativa: ${brl(totalMin)} – ${brl(totalMax)}
+⏱ Prazo: ${maxTime}
+${state.description ? '\n📝 Detalhes: ' + state.description + '\n' : ''}
+${phone ? 'Meu WhatsApp: ' + phone : ''}`;
+
+      const url = 'https://wa.me/5511999999999?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    }, { once: false });
+  }
+
+  /* Catálogo de acessórios fica em acessorios.html */
+</script>
+
+</body>
+</html>

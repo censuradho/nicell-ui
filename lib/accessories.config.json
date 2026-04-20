@@ -12,7 +12,8 @@
     "apple":     "Apple",
     "samsung":   "Samsung",
     "jbl":       "JBL",
-    "universal": "Universal"
+    "universal": "Universal",
+    "xbox": "Xbox"
   },
   "badges": {
     "sale": "Oferta",
@@ -27,21 +28,22 @@
     { "id": "p06", "cat": "capinha",    "brand": "apple",     "name": "Capa Anti-Impacto MagSafe",           "icon": "🛡️", "price": 89.90,  "oldPrice": null,   "rating": 4.8, "reviews": 178 },
     { "id": "p07", "cat": "capinha",    "brand": "universal", "name": "Capa Transparente Reforçada",         "icon": "💧", "price": 39.90,  "oldPrice": null,   "rating": 4.6, "reviews": 421 },
     { "id": "p08", "cat": "capinha",    "brand": "universal", "name": "Capa Carteira com Porta-Cartão",      "icon": "👛", "price": 59.90,  "oldPrice": null,   "rating": 4.7, "reviews": 95  },
-    { "id": "p09", "cat": "carregador", "brand": "apple",     "name": "Carregador 20W USB-C — Apple",        "icon": "⚡", "price": 129.90, "oldPrice": 159.90, "rating": 4.9, "reviews": 540, "badge": "sale" },
-    { "id": "p10", "cat": "carregador", "brand": "samsung",   "name": "Carregador Turbo 65W Samsung",        "icon": "⚡", "price": 149.90, "oldPrice": null,   "rating": 4.8, "reviews": 267 },
-    { "id": "p11", "cat": "carregador", "brand": "universal", "name": "Carregador por Indução 15W",          "icon": "🔋", "price": 99.90,  "oldPrice": null,   "rating": 4.6, "reviews": 184, "badge": "new" },
-    { "id": "p12", "cat": "carregador", "brand": "universal", "name": "Power Bank 20.000mAh",               "icon": "🔋", "price": 189.90, "oldPrice": 249.90, "rating": 4.7, "reviews": 332, "badge": "sale" },
-    { "id": "p13", "cat": "audio",      "brand": "jbl",       "name": "Caixa de Som Bluetooth — JBL Go",    "icon": "🔊", "price": 249.90, "oldPrice": 299.90, "rating": 4.8, "reviews": 412, "badge": "sale" },
-    { "id": "p14", "cat": "audio",      "brand": "jbl",       "name": "Caixa de Som Bluetooth — JBL Flip",  "icon": "🔊", "price": 599.90, "oldPrice": null,   "rating": 4.9, "reviews": 289 },
-    { "id": "p15", "cat": "audio",      "brand": "universal", "name": "Fone Bluetooth — Earbuds Pro",        "icon": "🎧", "price": 179.90, "oldPrice": 229.90, "rating": 4.7, "reviews": 521, "badge": "sale" },
-    { "id": "p16", "cat": "audio",      "brand": "universal", "name": "Fone com Fio — In-Ear",              "icon": "🎧", "price": 49.90,  "oldPrice": null,   "rating": 4.4, "reviews": 198 },
-    { "id": "p17", "cat": "cabo",       "brand": "apple",     "name": "Cabo USB-C / Lightning 1m",           "icon": "🔌", "price": 79.90,  "oldPrice": null,   "rating": 4.6, "reviews": 264 },
-    { "id": "p18", "cat": "cabo",       "brand": "universal", "name": "Cabo USB-C / USB-C 2m Reforçado",    "icon": "🔌", "price": 59.90,  "oldPrice": null,   "rating": 4.7, "reviews": 182 },
+    { "id": "p09", "cat": "carregador", "brand": "apple",     "name": "Carregador 20W USB-C — Apple",        "image": "https://m.media-amazon.com/images/I/31N1pF+Q2GL._AC_SX679_.jpg", "icon": "⚡", "price": 129.90, "oldPrice": 159.90, "rating": 4.9, "reviews": 540, "badge": "sale" },
+    { "id": "p10", "cat": "carregador", "brand": "samsung",   "name": "Carregador Turbo 65W Samsung",        "image": "https://m.media-amazon.com/images/I/51w6k8QnQzL._AC_SX679_.jpg", "icon": "⚡", "price": 149.90, "oldPrice": null,   "rating": 4.8, "reviews": 267 },
+    { "id": "p11", "cat": "carregador", "brand": "universal", "name": "Carregador por Indução 15W",          "image": "https://m.media-amazon.com/images/I/61wYwQ1QpGL._AC_SX679_.jpg", "icon": "🔋", "price": 99.90,  "oldPrice": null,   "rating": 4.6, "reviews": 184, "badge": "new" },
+    { "id": "p12", "cat": "carregador", "brand": "universal", "name": "Power Bank 20.000mAh",               "image": "https://m.media-amazon.com/images/I/61pQKc7UoGL._AC_SX679_.jpg", "icon": "🔋", "price": 189.90, "oldPrice": 249.90, "rating": 4.7, "reviews": 332, "badge": "sale" },
+    { "id": "p13", "cat": "audio",      "brand": "jbl",       "name": "Caixa de Som Bluetooth — JBL Go",    "image": "https://m.media-amazon.com/images/I/61pN+8vQpGL._AC_SX679_.jpg", "icon": "🔊", "price": 249.90, "oldPrice": 299.90, "rating": 4.8, "reviews": 412, "badge": "sale" },
+    { "id": "p14", "cat": "audio",      "brand": "jbl",       "name": "Caixa de Som Bluetooth — JBL Flip",  "image": "https://m.media-amazon.com/images/I/71l2r6Q3Q0L._AC_SX679_.jpg", "icon": "🔊", "price": 599.90, "oldPrice": null,   "rating": 4.9, "reviews": 289 },
+    { "id": "p15", "cat": "audio",      "brand": "universal", "name": "Fone Bluetooth — Earbuds Pro",        "image": "https://m.media-amazon.com/images/I/51QwQJHjKpL._AC_SX679_.jpg", "icon": "🎧", "price": 179.90, "oldPrice": 229.90, "rating": 4.7, "reviews": 521, "badge": "sale" },
+    { "id": "p16", "cat": "audio",      "brand": "universal", "name": "Fone com Fio — In-Ear",              "image": "https://m.media-amazon.com/images/I/51w5p1U6QwL._AC_SX679_.jpg", "icon": "🎧", "price": 49.90,  "oldPrice": null,   "rating": 4.4, "reviews": 198 },
+    { "id": "p17", "cat": "cabo",       "brand": "apple",     "name": "Cabo USB-C / Lightning 1m",           "image": "https://m.media-amazon.com/images/I/61wYwQ1QpGL._AC_SX679_.jpg", "icon": "🔌", "price": 79.90,  "oldPrice": null,   "rating": 4.6, "reviews": 264 },
+    { "id": "p18", "cat": "cabo",       "brand": "universal", "name": "Cabo USB-C / USB-C 2m Reforçado",    "image": "https://m.media-amazon.com/images/I/61wYwQ1QpGL._AC_SX679_.jpg", "icon": "🔌", "price": 59.90,  "oldPrice": null,   "rating": 4.7, "reviews": 182 },
     { "id": "p19", "cat": "cabo",       "brand": "universal", "name": "Cabo Micro USB Trançado",             "icon": "🔌", "price": 29.90,  "oldPrice": null,   "rating": 4.5, "reviews": 341 },
-    { "id": "p20", "cat": "cabo",       "brand": "universal", "name": "Adaptador HDMI para USB-C",           "icon": "🖥️", "price": 119.90, "oldPrice": null,   "rating": 4.8, "reviews": 73,  "badge": "new" },
+    { "id": "p20", "cat": "cabo",       "brand": "universal", "name": "Adaptador HDMI para USB-C",           "image": "https://m.media-amazon.com/images/I/51w5p1U6QwL._AC_SX679_.jpg", "icon": "🖥️", "price": 119.90, "oldPrice": null,   "rating": 4.8, "reviews": 73,  "badge": "new" },
     { "id": "p21", "cat": "suporte",    "brand": "universal", "name": "Suporte de Mesa Articulado",          "icon": "📐", "price": 69.90,  "oldPrice": null,   "rating": 4.7, "reviews": 156 },
     { "id": "p22", "cat": "suporte",    "brand": "universal", "name": "Suporte Veicular Magnético",          "icon": "🚗", "price": 49.90,  "oldPrice": 79.90,  "rating": 4.6, "reviews": 289, "badge": "sale" },
     { "id": "p23", "cat": "suporte",    "brand": "universal", "name": "Tripé Selfie Stick com Bluetooth",   "icon": "📸", "price": 89.90,  "oldPrice": null,   "rating": 4.5, "reviews": 201 },
-    { "id": "p24", "cat": "suporte",    "brand": "universal", "name": "Pop Socket Premium",                 "icon": "🎯", "price": 24.90,  "oldPrice": null,   "rating": 4.4, "reviews": 467 }
+    { "id": "p24", "cat": "suporte",    "brand": "universal", "name": "Pop Socket Premium",                 "icon": "🎯", "price": 24.90,  "oldPrice": null,   "rating": 4.4, "reviews": 467 },
+    { "id": "p25", "cat": "games",   "brand": "xbox",   "name": "Controle Sem Fio Microsoft Xbox - Branco",     "icon": "🎮", "price": 389.91,  "oldPrice": 400,  "rating": 4.8, "reviews": 124, "image": "https://images-na.ssl-images-amazon.com/images/I/61bh+T2v7SL._AC_UL232_SR232,232_.jpg" }
   ]
 }

@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import config from '@/lib/accessories.config.json'
+import Image from 'next/image'
 
 export interface Product {
   id: string
@@ -9,6 +10,7 @@ export interface Product {
   brand: string
   name: string
   icon: string
+  image?: string // url da foto, opcional
   price: number
   oldPrice: number | null
   rating: number
@@ -65,7 +67,20 @@ export function ProductCard({ product }: { product: Product }) {
         className="h-36 flex items-center justify-center text-[68px] bg-white rounded-2xl mb-4"
         aria-hidden="true"
       >
-        {product.icon}
+        {product.image
+          ? (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill={false}
+              width={128}
+              height={128}
+              sizes="(max-width: 768px) 96px, 128px"
+              className="object-contain w-auto h-32 max-h-32 max-w-full"
+              style={{ width: 'auto', height: '8rem' }}
+            />
+          )
+          : product.icon}
       </div>
 
       {/* meta */}
