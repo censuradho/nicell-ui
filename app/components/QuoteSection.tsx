@@ -178,7 +178,7 @@ export function QuoteSection() {
       className="py-24"
       style={{ background: 'linear-gradient(180deg, #fafafa 0%, #f5f5f7 100%)' }}
     >
-      <div className="container">
+      <div className="container px-4">
         <h2 id="orcamento-titulo" className="text-[40px] font-semibold tracking-tight text-center mb-3">
           {config.section.title}
         </h2>

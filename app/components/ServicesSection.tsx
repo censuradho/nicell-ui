@@ -76,7 +76,7 @@ const services: Service[] = [
 
 export function ServicesSection() {
   return (
-    <section className="py-20">
+    <section className="py-20 px-4">
       <div className="container">
         <h2 className="text-[40px] font-semibold tracking-tight text-center mb-3">
           O que fazemos.

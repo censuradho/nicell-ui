@@ -63,12 +63,12 @@ function MarqueeRow({ brands, reverse }: { brands: typeof row1; reverse?: boolea
 
 export function BrandsSection() {
   return (
-    <section className="bg-card py-24 overflow-hidden" id="marcas">
+    <section className="bg-card py-24 overflow-hidden px-4" id="marcas">
       <div className="container text-center mb-12">
         <h2 className="text-[40px] font-semibold tracking-tight mb-3">
           Atendemos todas as marcas.
         </h2>
-        <p className="text-xl text-card-foreground max-w-[680px] mx-auto">
+        <p className="text-xl text-card-foreground max-w-[680px] mx-auto ">
           Da Apple à Xiaomi. Do PlayStation ao Xbox. Peças originais e garantia em todo serviço.
         </p>
         <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 text-[13px] font-medium shadow-[0_1px_3px_rgba(0,0,0,0.04)] mt-6">

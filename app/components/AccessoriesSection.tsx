@@ -2,7 +2,7 @@ import { AnchorButton } from "@/components/AnchorButton";
 
 export function AccessoriesSection() {
   return (
-    <section className="py-10">
+    <section className="py-10 px-4">
       <div className="container">
         <div
           className="group relative overflow-hidden rounded-[22px] bg-[#1d1d1f] grid grid-cols-1 md:grid-cols-2 items-center gap-8 px-7 py-10 md:px-12.5 md:py-15 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
