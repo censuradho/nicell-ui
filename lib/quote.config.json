@@ -1,0 +1,144 @@
+{
+  "section": {
+    "title": "Orçamento em 60 segundos.",
+    "subtitle": "Responda algumas perguntas e receba uma estimativa imediata. Sem cadastro, sem espera."
+  },
+  "steps": {
+    "category": {
+      "question": "Qual aparelho precisa de atenção?",
+      "hint": "Escolha a categoria do seu equipamento."
+    },
+    "brand": {
+      "question": "Qual a marca / modelo?",
+      "hint": "Selecione para um orçamento mais preciso."
+    },
+    "problem": {
+      "question": "Qual é o problema?",
+      "hint": "Pode escolher mais de um se for o caso."
+    },
+    "details": {
+      "question": "Conte um pouco mais.",
+      "hint": "Quanto mais detalhes, mais preciso o orçamento.",
+      "modelLabel": "Modelo exato (opcional)",
+      "modelPlaceholder": "Ex.: iPhone 13 Pro, Notebook Dell Inspiron 15...",
+      "descriptionLabel": "Descreva o problema (opcional)",
+      "descriptionPlaceholder": "Ex.: caiu no chão, tela trincou e parou de responder ao toque..."
+    },
+    "result": {
+      "title": "Seu orçamento está pronto.",
+      "guarantee": "90 dias em peças e serviço",
+      "payment": "À vista 5% off · cartão até 2x sem juros",
+      "diagnosis": "gratuito e sem compromisso",
+      "namePlaceholder": "Como podemos te chamar?",
+      "phonePlaceholder": "(11) 99999-9999",
+      "whatsappCta": "Enviar via WhatsApp",
+      "resetCta": "Refazer orçamento"
+    }
+  },
+  "discounts": [
+    { "minItems": 2, "rate": 0.08, "label": "Desconto combo" },
+    { "minItems": 3, "rate": 0.15, "label": "Desconto combo" }
+  ],
+  "whatsapp": "5511999999999",
+  "categories": [
+    {
+      "id": "celular",
+      "label": "Celular",
+      "icon": "Smartphone",
+      "description": "Smartphone iOS ou Android",
+      "brandQuestion": "Qual a marca do celular?",
+      "brands": [
+        "Apple (iPhone)",
+        "Samsung",
+        "Xiaomi",
+        "Motorola",
+        "LG",
+        "Outra marca"
+      ],
+      "problems": [
+        { "id": "tela",    "icon": "RectangleEllipsis", "label": "Tela quebrada / trincada",      "minPrice": 280,  "maxPrice": 1900, "estimatedTime": "1 a 3 dias" },
+        { "id": "bateria", "icon": "Battery",           "label": "Bateria viciada / não segura",  "minPrice": 180,  "maxPrice": 650,  "estimatedTime": "até 24h" },
+        { "id": "carga",   "icon": "Plug",              "label": "Não carrega / conector",        "minPrice": 150,  "maxPrice": 520,  "estimatedTime": "1 a 2 dias" },
+        { "id": "molhou",  "icon": "Droplets",          "label": "Caiu na água / oxidação",       "minPrice": 200,  "maxPrice": 1200, "estimatedTime": "2 a 5 dias" },
+        { "id": "placa",   "icon": "CircuitBoard",      "label": "Não liga / problema na placa",  "minPrice": 380,  "maxPrice": 1800, "estimatedTime": "3 a 7 dias" },
+        { "id": "camera",  "icon": "Camera",            "label": "Câmera com defeito",            "minPrice": 220,  "maxPrice": 980,  "estimatedTime": "2 a 4 dias" },
+        { "id": "audio",   "icon": "Volume2",           "label": "Som / microfone / alto-falante","minPrice": 120,  "maxPrice": 480,  "estimatedTime": "1 a 2 dias" },
+        { "id": "traseira","icon": "Square",            "label": "Tampa traseira de vidro",       "minPrice": 160,  "maxPrice": 780,  "estimatedTime": "1 a 3 dias" }
+      ]
+    },
+    {
+      "id": "computador",
+      "label": "Computador",
+      "icon": "Laptop",
+      "description": "Desktop ou notebook",
+      "brandQuestion": "Qual o modelo do computador?",
+      "brands": [
+        "Notebook Dell",
+        "Notebook Lenovo",
+        "Notebook HP",
+        "Notebook Asus",
+        "Notebook Acer",
+        "Apple (Mac)",
+        "Desktop / Gamer",
+        "Outra marca"
+      ],
+      "problems": [
+        { "id": "format",  "icon": "HardDrive",    "label": "Formatação completa (Windows)",     "minPrice": 120, "maxPrice": 220,  "estimatedTime": "até 24h" },
+        { "id": "ssd",     "icon": "Zap",          "label": "Troca de HD por SSD",               "minPrice": 280, "maxPrice": 780,  "estimatedTime": "1 a 2 dias" },
+        { "id": "lento",   "icon": "Gauge",        "label": "Está muito lento",                  "minPrice": 90,  "maxPrice": 280,  "estimatedTime": "até 24h" },
+        { "id": "virus",   "icon": "Bug",          "label": "Vírus / malware",                   "minPrice": 120, "maxPrice": 260,  "estimatedTime": "1 dia" },
+        { "id": "naoliga", "icon": "PowerOff",     "label": "Não liga",                          "minPrice": 180, "maxPrice": 980,  "estimatedTime": "2 a 5 dias" },
+        { "id": "tela",    "icon": "Monitor",      "label": "Troca de tela",                     "minPrice": 380, "maxPrice": 1500, "estimatedTime": "2 a 4 dias" },
+        { "id": "bat",     "icon": "BatteryLow",   "label": "Bateria do notebook",               "minPrice": 280, "maxPrice": 680,  "estimatedTime": "1 a 2 dias" },
+        { "id": "limpeza", "icon": "Wind",         "label": "Limpeza interna + pasta térmica",   "minPrice": 120, "maxPrice": 240,  "estimatedTime": "até 24h" },
+        { "id": "teclado", "icon": "Keyboard",     "label": "Teclado com defeito",               "minPrice": 180, "maxPrice": 520,  "estimatedTime": "1 a 3 dias" },
+        { "id": "upgrade", "icon": "MemoryStick",  "label": "Upgrade de memória RAM",            "minPrice": 180, "maxPrice": 680,  "estimatedTime": "1 dia" }
+      ]
+    },
+    {
+      "id": "ps5",
+      "label": "PlayStation 5",
+      "icon": "Gamepad2",
+      "description": "Standard ou Slim",
+      "brandQuestion": "Qual a versão do console?",
+      "brands": [
+        "PS5 Standard (com leitor)",
+        "PS5 Digital Edition",
+        "PS5 Slim",
+        "PS5 Pro"
+      ],
+      "problems": [
+        { "id": "limpeza",  "icon": "Wind",       "label": "Limpeza + pasta térmica (preventiva)", "minPrice": 180, "maxPrice": 280,  "estimatedTime": "1 a 2 dias" },
+        { "id": "super",    "icon": "Thermometer","label": "Esquentando / desligando sozinho",     "minPrice": 220, "maxPrice": 520,  "estimatedTime": "2 a 3 dias" },
+        { "id": "hdmi",     "icon": "Tv",         "label": "Sem imagem / HDMI queimado",           "minPrice": 380, "maxPrice": 780,  "estimatedTime": "3 a 5 dias" },
+        { "id": "leitor",   "icon": "Disc",       "label": "Leitor de disco não lê / não puxa",   "minPrice": 280, "maxPrice": 780,  "estimatedTime": "2 a 4 dias" },
+        { "id": "naoliga",  "icon": "PowerOff",   "label": "Não liga",                             "minPrice": 380, "maxPrice": 1200, "estimatedTime": "3 a 7 dias" },
+        { "id": "controle", "icon": "Gamepad2",   "label": "Controle com drift / botão",           "minPrice": 120, "maxPrice": 280,  "estimatedTime": "1 a 2 dias" },
+        { "id": "fonte",    "icon": "Zap",        "label": "Fonte com defeito",                    "minPrice": 280, "maxPrice": 580,  "estimatedTime": "2 a 3 dias" }
+      ]
+    },
+    {
+      "id": "xbox",
+      "label": "Xbox",
+      "icon": "Gamepad",
+      "description": "Series X/S ou One",
+      "brandQuestion": "Qual a versão do Xbox?",
+      "brands": [
+        "Xbox Series X",
+        "Xbox Series S",
+        "Xbox One X",
+        "Xbox One S",
+        "Xbox One"
+      ],
+      "problems": [
+        { "id": "limpeza",  "icon": "Wind",       "label": "Limpeza + pasta térmica (preventiva)", "minPrice": 160, "maxPrice": 260,  "estimatedTime": "1 a 2 dias" },
+        { "id": "super",    "icon": "Thermometer","label": "Esquentando / desligando sozinho",     "minPrice": 200, "maxPrice": 480,  "estimatedTime": "2 a 3 dias" },
+        { "id": "hdmi",     "icon": "Tv",         "label": "Sem imagem / HDMI queimado",           "minPrice": 340, "maxPrice": 720,  "estimatedTime": "3 a 5 dias" },
+        { "id": "leitor",   "icon": "Disc",       "label": "Leitor de disco não lê",               "minPrice": 260, "maxPrice": 720,  "estimatedTime": "2 a 4 dias" },
+        { "id": "naoliga",  "icon": "PowerOff",   "label": "Não liga",                             "minPrice": 340, "maxPrice": 1100, "estimatedTime": "3 a 7 dias" },
+        { "id": "controle", "icon": "Gamepad",    "label": "Controle com drift / botão",           "minPrice": 120, "maxPrice": 280,  "estimatedTime": "1 a 2 dias" },
+        { "id": "fonte",    "icon": "Zap",        "label": "Fonte com defeito",                    "minPrice": 260, "maxPrice": 540,  "estimatedTime": "2 a 3 dias" }
+      ]
+    }
+  ]
+}
