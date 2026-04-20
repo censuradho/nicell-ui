@@ -31,10 +31,10 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <LinkButton href="/#orcamento" size="sm">
+          <LinkButton href="/#orcamento" variant="text" size="sm">
             Orçamento online
           </LinkButton>
-          <AnchorButton href="/login" variant="text" size="sm">
+          <AnchorButton href="/login"  size="sm">
             Login
           </AnchorButton>
         </div>
