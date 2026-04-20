@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lato } from "next/font/google";
 import "./globals.css";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const lato = Lato({
   variable: "--font-lato",
@@ -24,7 +25,12 @@ export default function RootLayout({
       lang="en"
       className={`${lato.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        {process.env.NODE_ENV !== 'development' && (
+          <GoogleAnalytics gaId="G-LWG1WRXZP5" />
+        )}
+      </body>
     </html>
   );
 }
