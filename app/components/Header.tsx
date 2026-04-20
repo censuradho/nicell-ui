@@ -14,7 +14,7 @@ const navigation = [
 
 export function Header() {
   return (
-    <header className="border-y border-outline bg-background-glass backdrop-blur-sm sticky top-0 z-50">
+    <header className="border-y border-outline bg-background-glass backdrop-blur-sm sticky top-0 z-50 px-4">
       <div className="container h-[43px] flex items-center justify-between">
         <Link href="/" className="text-[21px] font-semibold">
           Ni<span className="text-primary">Cell</span>
