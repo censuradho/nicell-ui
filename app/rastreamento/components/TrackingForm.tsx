@@ -38,7 +38,7 @@ export function TrackingForm() {
   }
 
   return (
-    <div className="w-full max-w-[480px] items-center flex flex-col gap-2">
+    <div className="w-full max-w-[780px] items-center flex flex-col gap-2 bg-background rounded-2xl p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex items-start gap-4"
