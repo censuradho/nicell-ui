@@ -1,4 +1,4 @@
-import { Gamepad2, HardDrive, Laptop, Shield, Smartphone, Wrench } from "lucide-react";
+import { Gamepad2, HardDrive, Laptop, Shield, Smartphone, Truck, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { CSSProperties } from "react";
@@ -61,15 +61,6 @@ const services: Service[] = [
     accentBg: 'rgba(255,149,0,0.10)',
   },
   {
-    icon: Wrench,
-    tag: 'Grátis',
-    title: 'Diagnóstico Gratuito',
-    description: 'Levou pra outro lugar e cobraram pra avaliar? Aqui o diagnóstico é gratuito e o orçamento sem compromisso.',
-    linkLabel: 'Agendar agora',
-    accent: '#30b0c7',
-    accentBg: 'rgba(48,176,199,0.10)',
-  },
-  {
     icon: Shield,
     tag: 'Incluso',
     title: 'Garantia de 90 dias',
@@ -77,6 +68,15 @@ const services: Service[] = [
     linkLabel: 'Saiba mais',
     accent: '#ff2d55',
     accentBg: 'rgba(255,45,85,0.08)',
+  },
+  {
+    icon: Truck,
+    tag: 'Grátis',
+    title: 'Entrega em domicílio',
+    description: 'Serviços acima de R$ 200? Entregamos o aparelho pronto direto na sua porta, sem custo adicional.',
+    linkLabel: 'Gerar orçamento',
+    accent: '#ff9500',
+    accentBg: 'rgba(255,149,0,0.10)',
   },
 ]
 
