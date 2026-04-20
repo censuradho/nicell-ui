@@ -5,6 +5,7 @@ import { Header } from "./components/Header";
 import { QuoteSection } from "./components/QuoteSection";
 import { ServicesSection } from "./components/ServicesSection";
 import { TopInfo } from "./components/TopInfo";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <BrandsSection />
       <AccessoriesSection />
       <QuoteSection />
+      <Footer />
     </main>
   );
 }
