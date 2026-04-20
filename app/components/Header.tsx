@@ -9,7 +9,7 @@ const navigation = [
   { label: 'Marcas', href: '#marcas' },
   { label: 'Orçamento', href: '#orcamento' },
   { label: 'Contato', href: '#contato' },
-  { label: 'Acessórios', href: '#acessorios' },
+  { label: 'Acessórios', href: '/acessorios' },
 ]
 
 export function Header() {
