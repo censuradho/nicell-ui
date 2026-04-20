@@ -67,10 +67,10 @@ body {
 
 @media (max-width: 768px) {
   .animate-marquee-left {
-    animation-duration: 18s;
+    animation-duration: 6s;
   }
   .animate-marquee-right {
-    animation-duration: 22s;
+    animation-duration: 8s;
   }
 }
 
