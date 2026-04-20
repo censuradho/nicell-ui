@@ -3,13 +3,10 @@ import Link from "next/link";
 import { MobileMenu } from "./MobileMenu";
 
 const navigation = [
-  { label: 'Celulares', href: '#celulares' },
-  { label: 'Computadores', href: '#computadores' },
-  { label: 'Games', href: '#games' },
-  { label: 'Marcas', href: '#marcas' },
-  { label: 'Orçamento', href: '#orcamento' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Marcas', href: '/#marcas' },
+  { label: 'Contato', href: '/#contato' },
   { label: 'Acessórios', href: '/acessorios' },
+  { label: 'Rastreamento', href: '/rastreamento' },
 ]
 
 export function Header() {
