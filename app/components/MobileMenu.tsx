@@ -25,7 +25,7 @@ export function MobileMenu({ navigation }: { navigation: NavItem[] }) {
 
       {isOpen && (
         <div className="absolute top-full left-0 right-0 bg-background border-b border-outline z-50">
-          <div className="container py-5 flex flex-col gap-5">
+          <div className="container py-5 flex flex-col gap-5 px-4">
             <nav>
               <ul className="flex flex-col gap-4">
                 {navigation.map((item) => (
@@ -41,7 +41,7 @@ export function MobileMenu({ navigation }: { navigation: NavItem[] }) {
                 ))}
               </ul>
             </nav>
-            <AnchorButton size="sm" className="self-start">
+            <AnchorButton href="/#orcamento" size="sm" className="self-start">
               Orçamento online
             </AnchorButton>
           </div>
