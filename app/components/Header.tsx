@@ -1,6 +1,7 @@
 import { AnchorButton } from "@/components/AnchorButton";
 import Link from "next/link";
 import { MobileMenu } from "./MobileMenu";
+import { LinkButton } from "@/components/LinkButton";
 
 const navigation = [
   { label: 'Marcas', href: '/#marcas' },
@@ -30,11 +31,11 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
+          <LinkButton href="/#orcamento" size="sm">
+            Orçamento online
+          </LinkButton>
           <AnchorButton href="/login" variant="text" size="sm">
             Login
-          </AnchorButton>
-          <AnchorButton href="/#orcamento" size="sm">
-            Orçamento online
           </AnchorButton>
         </div>
 
