@@ -1,5 +1,6 @@
 import { appSettings } from "@/config/app"
 import { generateWhatsAppLink } from "@/utils/generateWhatsAppLink"
+import { applyPhoneMask } from "@/utils/masks"
 
 const disclaimer =
   'Os valores apresentados pelo orçamento online são estimativas baseadas em casos comuns. ' +
@@ -42,7 +43,7 @@ const columns = [
     links: [
       { label: 'Orçamento online',        href: '#orcamento' },
       { label: 'WhatsApp',                href: generateWhatsAppLink('Olá, gostaria de mais informações.') },
-      { label: '(11) 9999-9999',          href: `tel:${appSettings.phone}` },
+      { label: applyPhoneMask(appSettings.phone),          href: `tel:${appSettings.phone}` },
       { label: 'contato@nicell.com.br',   href: `mailto:${appSettings.email}` },
     ],
   },
