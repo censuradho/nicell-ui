@@ -193,7 +193,7 @@ function FilterModal({ open, onClose, filter, setFilter, brand, setBrand, search
   )
 }
 
-export function AccessoriesClient({ initialCat }: { initialCat?: string }) {
+export function AccessoriesClient({ initialCat, initialBrand }: { initialCat?: string; initialBrand?: string }) {
   const {
     filter, setFilter,
     brand,  setBrand,
@@ -201,7 +201,7 @@ export function AccessoriesClient({ initialCat }: { initialCat?: string }) {
     sort,   setSort,
     filtered, visible,
     hasMore, sentinelRef,
-  } = useAccessories(initialCat ?? 'all')
+  } = useAccessories(initialCat ?? 'all', initialBrand ?? 'all')
 
   const [showFilters, setShowFilters] = useState(false)
 
