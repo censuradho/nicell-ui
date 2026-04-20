@@ -38,7 +38,7 @@ export function AccessoriesClient({ initialCat }: { initialCat?: string }) {
     : `${filtered.length} ${filtered.length === 1 ? 'produto encontrado' : 'produtos encontrados'}`
 
   return (
-    <div className="container">
+    <div className="container px-4">
 
       {/* ── toolbar ── */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
