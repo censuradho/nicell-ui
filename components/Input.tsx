@@ -5,9 +5,10 @@ const base =
   'w-full border rounded-xl px-4 py-3.5 text-base outline-none ' +
   'focus:ring-4 transition placeholder:text-card-foreground/60'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string
   errorMessage?: string
+  ref?: any
 }
 
 export function Input({ label, errorMessage, className, id, ...props }: InputProps) {
