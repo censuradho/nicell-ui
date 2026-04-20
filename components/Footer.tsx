@@ -51,7 +51,7 @@ const columns = [
     heading: 'A NiCell',
     links: [
       { label: 'Sobre nós',               href: '#' },
-      { label: 'Garantia',                href: '#' },
+      { label: 'Garantia',                href: '/garantia' },
       { label: 'Política de privacidade', href: '#' },
       { label: 'Termos de uso',           href: '#' },
     ],
