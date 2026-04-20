@@ -1,6 +1,11 @@
 export function applyPhoneMask(value: string) {
   // Remove tudo que não for número
-  const digits = value.replace(/\D/g, '')
+  let digits = value.replace(/\D/g, '')
+
+  // Remove o código do país '55' se estiver no início
+  if (digits.startsWith('55')) {
+    digits = digits.slice(2)
+  }
 
   // Aplica a máscara
   if (digits.length <= 10) {
