@@ -6,6 +6,7 @@ import config from '@/lib/accessories.config.json'
 export interface Product {
   id: string
   cat: string
+  brand: string
   name: string
   icon: string
   price: number
