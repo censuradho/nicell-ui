@@ -75,10 +75,12 @@ interface FilterModalProps {
   setFilter: (v: string) => void
   brand: string
   setBrand: (v: string) => void
+  search: string
+  setSearch: (v: string) => void
   resultCount: number
 }
 
-function FilterModal({ open, onClose, filter, setFilter, brand, setBrand, resultCount }: FilterModalProps) {
+function FilterModal({ open, onClose, filter, setFilter, brand, setBrand, search, setSearch, resultCount }: FilterModalProps) {
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden'
     else document.body.style.overflow = ''
@@ -109,6 +111,23 @@ function FilterModal({ open, onClose, filter, setFilter, brand, setBrand, result
 
       {/* body */}
       <div className="flex-1 overflow-y-auto px-4 py-5 space-y-6">
+        <div className="relative">
+          <Search
+            size={16}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-card-foreground pointer-events-none"
+            aria-hidden="true"
+          />
+          <label className="sr-only" htmlFor="modal-search">Buscar acessório</label>
+          <input
+            id="modal-search"
+            type="search"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Buscar acessório..."
+            className="w-full pl-10 pr-4 py-2.5 border border-outline rounded-full text-base bg-white outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10 placeholder:text-card-foreground/60"
+          />
+        </div>
+
         <div>
           <p className="text-xs font-semibold uppercase tracking-wide text-card-foreground mb-3">
             Categoria
@@ -186,7 +205,7 @@ export function AccessoriesClient({ initialCat }: { initialCat?: string }) {
 
   const [showFilters, setShowFilters] = useState(false)
 
-  const activeFilterCount = (filter !== 'all' ? 1 : 0) + (brand !== 'all' ? 1 : 0)
+  const activeFilterCount = (filter !== 'all' ? 1 : 0) + (brand !== 'all' ? 1 : 0) + (search.trim() !== '' ? 1 : 0)
 
   const resultLabel = filtered.length === 0
     ? 'Nenhum produto encontrado'
@@ -198,8 +217,8 @@ export function AccessoriesClient({ initialCat }: { initialCat?: string }) {
       <div className="sticky top-[43px] z-40 bg-white/90 backdrop-blur-sm border-b border-outline">
         <div className="container px-4 pt-4 pb-3 space-y-3">
 
-          {/* toolbar — desktop: search + sort | mobile: search only */}
-          <div className="flex items-center gap-3">
+          {/* toolbar — desktop only: search + sort */}
+          <div className="hidden lg:flex items-center gap-3">
             <label className="sr-only" htmlFor="accessory-search">Buscar acessório</label>
             <div className="relative flex-1">
               <Search
@@ -339,6 +358,8 @@ export function AccessoriesClient({ initialCat }: { initialCat?: string }) {
         setFilter={setFilter}
         brand={brand}
         setBrand={setBrand}
+        search={search}
+        setSearch={setSearch}
         resultCount={filtered.length}
       />
     </div>
