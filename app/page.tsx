@@ -3,7 +3,6 @@ import { AboveTheFold } from "./components/AboveTheFold";
 import { AccessoriesSection } from "./components/AccessoriesSection";
 import { BrandsSection } from "./components/BrandsSection";
 import { Header } from "./components/Header";
-import { LocationSection } from "./components/LocationSection";
 import { QuoteSection } from "./components/QuoteSection";
 import { ServicesSection } from "./components/ServicesSection";
 
@@ -22,9 +21,6 @@ export default function Home() {
       <BrandsSection />
       <AccessoriesSection />
       <QuoteSection />
-
-      <LocationSection />
-
       <Footer />
     </main>
   );
