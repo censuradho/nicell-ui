@@ -32,7 +32,11 @@ export function Header() {
           </ul>
         </nav>
 
-        <AnchorButton size="sm" className="hidden lg:flex">
+        <AnchorButton
+          href="/#orcamento"
+          size="sm"
+          className="hidden lg:flex"
+        >
           Orçamento online
         </AnchorButton>
 
