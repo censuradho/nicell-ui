@@ -38,6 +38,7 @@ export function TiltImage() {
         src="/above-hero.jpg"
         alt="Above the fold image"
         fill
+        priority
         className="object-cover"
       />
     </div>
