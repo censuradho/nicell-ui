@@ -2,10 +2,10 @@ import { AnchorButton } from "@/components/AnchorButton";
 import Link from "next/link";
 import { MobileMenu } from "./MobileMenu";
 import { LinkButton } from "@/components/LinkButton";
+import { generateWhatsAppLink } from "@/utils/generateWhatsAppLink";
 
 const navigation = [
   { label: 'Marcas', href: '/#marcas' },
-  { label: 'Contato', href: '/#contato' },
   { label: 'Acessórios', href: '/acessorios' },
   { label: 'Rastreamento', href: '/rastreamento' },
 ]
@@ -27,6 +27,16 @@ export function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <a
+                className="text-sm"
+                href={generateWhatsAppLink('Olá! Gostaria de saber mais sobre os serviços da NiCell.')} 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Contato
+              </a>
+            </li>
           </ul>
         </nav>
 
