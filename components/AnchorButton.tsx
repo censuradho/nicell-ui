@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { AnchorHTMLAttributes, PropsWithChildren } from "react";
-import { Icon, IconNames } from "./icons";
 
 const variants = {
   fill: 'bg-primary text-primary-foreground hover:bg-primary/90 focus:bg-primary/90',
@@ -16,7 +15,6 @@ const sizes = {
 interface AnchorButtonProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   variant?: keyof typeof variants
   size?: keyof typeof sizes
-  headIcon?: IconNames
 }
 
 export function AnchorButton(props: PropsWithChildren<AnchorButtonProps>) {
@@ -25,7 +23,6 @@ export function AnchorButton(props: PropsWithChildren<AnchorButtonProps>) {
     className,
     variant = 'fill',
     size = 'md',
-    headIcon,
     ...otherProps
   } = props
 
@@ -43,9 +40,6 @@ export function AnchorButton(props: PropsWithChildren<AnchorButtonProps>) {
       )}
     >
       {children}
-      {headIcon && (
-        <Icon name={headIcon} size={16} />
-      )}
     </a>
   )
 }
