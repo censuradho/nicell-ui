@@ -9,17 +9,17 @@ export const metadata = {
 }
 
 interface Props {
-  searchParams: Promise<{ cat?: string }>
+  searchParams: Promise<{ cat?: string; brand?: string }>
 }
 
 export default async function AccessoriesPage({ searchParams }: Props) {
-  const { cat } = await searchParams
+  const { cat, brand } = await searchParams
 
   return (
     <main>
       <Header />
       <PageHero />
-      <AccessoriesClient initialCat={cat} />
+      <AccessoriesClient initialCat={cat} initialBrand={brand} />
       <Footer />
     </main>
   )
