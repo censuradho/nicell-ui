@@ -1,0 +1,41 @@
+{
+  "whatsapp": "+5551982397632",
+  "categories": {
+    "pelicula":   "Película",
+    "capinha":    "Capinha",
+    "carregador": "Carregador",
+    "audio":      "Áudio",
+    "cabo":       "Cabo",
+    "suporte":    "Suporte"
+  },
+  "badges": {
+    "sale": "Oferta",
+    "new":  "Novidade"
+  },
+  "products": [
+    { "id": "p01", "cat": "pelicula",   "name": "Película de Vidro 3D — iPhone",      "icon": "🛡️", "price": 39.90,  "oldPrice": 59.90,  "rating": 4.8, "reviews": 124, "badge": "sale" },
+    { "id": "p02", "cat": "pelicula",   "name": "Película de Vidro — Samsung Galaxy",  "icon": "🛡️", "price": 34.90,  "oldPrice": null,   "rating": 4.7, "reviews": 89  },
+    { "id": "p03", "cat": "pelicula",   "name": "Película Hidrogel Privacidade",       "icon": "🔒", "price": 49.90,  "oldPrice": null,   "rating": 4.6, "reviews": 62,  "badge": "new" },
+    { "id": "p04", "cat": "pelicula",   "name": "Película Anti-Impacto Universal",     "icon": "💎", "price": 29.90,  "oldPrice": null,   "rating": 4.5, "reviews": 201 },
+    { "id": "p05", "cat": "capinha",    "name": "Capa Silicone Premium — iPhone",      "icon": "📱", "price": 69.90,  "oldPrice": 99.90,  "rating": 4.9, "reviews": 312, "badge": "sale" },
+    { "id": "p06", "cat": "capinha",    "name": "Capa Anti-Impacto MagSafe",           "icon": "🛡️", "price": 89.90,  "oldPrice": null,   "rating": 4.8, "reviews": 178 },
+    { "id": "p07", "cat": "capinha",    "name": "Capa Transparente Reforçada",         "icon": "💧", "price": 39.90,  "oldPrice": null,   "rating": 4.6, "reviews": 421 },
+    { "id": "p08", "cat": "capinha",    "name": "Capa Carteira com Porta-Cartão",      "icon": "👛", "price": 59.90,  "oldPrice": null,   "rating": 4.7, "reviews": 95  },
+    { "id": "p09", "cat": "carregador", "name": "Carregador 20W USB-C — Apple",        "icon": "⚡", "price": 129.90, "oldPrice": 159.90, "rating": 4.9, "reviews": 540, "badge": "sale" },
+    { "id": "p10", "cat": "carregador", "name": "Carregador Turbo 65W Samsung",        "icon": "⚡", "price": 149.90, "oldPrice": null,   "rating": 4.8, "reviews": 267 },
+    { "id": "p11", "cat": "carregador", "name": "Carregador por Indução 15W",          "icon": "🔋", "price": 99.90,  "oldPrice": null,   "rating": 4.6, "reviews": 184, "badge": "new" },
+    { "id": "p12", "cat": "carregador", "name": "Power Bank 20.000mAh",               "icon": "🔋", "price": 189.90, "oldPrice": 249.90, "rating": 4.7, "reviews": 332, "badge": "sale" },
+    { "id": "p13", "cat": "audio",      "name": "Caixa de Som Bluetooth — JBL Go",    "icon": "🔊", "price": 249.90, "oldPrice": 299.90, "rating": 4.8, "reviews": 412, "badge": "sale" },
+    { "id": "p14", "cat": "audio",      "name": "Caixa de Som Bluetooth — JBL Flip",  "icon": "🔊", "price": 599.90, "oldPrice": null,   "rating": 4.9, "reviews": 289 },
+    { "id": "p15", "cat": "audio",      "name": "Fone Bluetooth — Earbuds Pro",        "icon": "🎧", "price": 179.90, "oldPrice": 229.90, "rating": 4.7, "reviews": 521, "badge": "sale" },
+    { "id": "p16", "cat": "audio",      "name": "Fone com Fio — In-Ear",              "icon": "🎧", "price": 49.90,  "oldPrice": null,   "rating": 4.4, "reviews": 198 },
+    { "id": "p17", "cat": "cabo",       "name": "Cabo USB-C / Lightning 1m",           "icon": "🔌", "price": 79.90,  "oldPrice": null,   "rating": 4.6, "reviews": 264 },
+    { "id": "p18", "cat": "cabo",       "name": "Cabo USB-C / USB-C 2m Reforçado",    "icon": "🔌", "price": 59.90,  "oldPrice": null,   "rating": 4.7, "reviews": 182 },
+    { "id": "p19", "cat": "cabo",       "name": "Cabo Micro USB Trançado",             "icon": "🔌", "price": 29.90,  "oldPrice": null,   "rating": 4.5, "reviews": 341 },
+    { "id": "p20", "cat": "cabo",       "name": "Adaptador HDMI para USB-C",           "icon": "🖥️", "price": 119.90, "oldPrice": null,   "rating": 4.8, "reviews": 73,  "badge": "new" },
+    { "id": "p21", "cat": "suporte",    "name": "Suporte de Mesa Articulado",          "icon": "📐", "price": 69.90,  "oldPrice": null,   "rating": 4.7, "reviews": 156 },
+    { "id": "p22", "cat": "suporte",    "name": "Suporte Veicular Magnético",          "icon": "🚗", "price": 49.90,  "oldPrice": 79.90,  "rating": 4.6, "reviews": 289, "badge": "sale" },
+    { "id": "p23", "cat": "suporte",    "name": "Tripé Selfie Stick com Bluetooth",   "icon": "📸", "price": 89.90,  "oldPrice": null,   "rating": 4.5, "reviews": 201 },
+    { "id": "p24", "cat": "suporte",    "name": "Pop Socket Premium",                 "icon": "🎯", "price": 24.90,  "oldPrice": null,   "rating": 4.4, "reviews": 467 }
+  ]
+}
