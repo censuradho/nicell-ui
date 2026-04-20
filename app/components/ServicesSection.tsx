@@ -128,11 +128,11 @@ export function ServicesSection() {
                     <div />
                   )}
                   <Link
-                    href={{
+                    href={service.category ? {
                       pathname: '/',
-                      query: { categoria: 'celular' },
+                      query: { categoria: service.category },
                       hash: 'orcamento',
-                    }}
+                    }: '/#orcamento'}
                     className="text-sm font-medium flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
                     style={{ color: service.accent }}
                   >
