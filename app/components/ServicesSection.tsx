@@ -128,13 +128,12 @@ export function ServicesSection() {
                     <div />
                   )}
                   <Link
-                    href={service.category ? {
-                      pathname: '/',
-                      query: { categoria: service.category },
-                      hash: 'orcamento',
-                    }: '/#orcamento'}
+                    href={service.category
+                      ? `/?categoria=${encodeURIComponent(service.category)}#orcamento`
+                      : '/#orcamento'}
                     className="text-sm font-medium flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
                     style={{ color: service.accent }}
+                    replace
                   >
                     {service.linkLabel} ›
                   </Link>
