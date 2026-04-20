@@ -1,9 +1,11 @@
 import { Gamepad2, HardDrive, Laptop, Shield, Smartphone, Wrench } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 
 interface Service {
   icon: LucideIcon
+  category?: string
   tag: string
   title: string
   description: string
@@ -13,9 +15,11 @@ interface Service {
   accentBg: string
 }
 
+
 const services: Service[] = [
   {
     icon: Smartphone,
+    category: 'celular',
     tag: 'Reparo',
     title: 'Reparo de Celulares',
     description: 'Troca de tela, bateria, conector de carga, traseira de vidro, alto-falante, câmera e placa lógica. iPhone, Samsung, Xiaomi, Motorola e mais.',
@@ -28,6 +32,7 @@ const services: Service[] = [
     icon: Laptop,
     tag: 'Software',
     title: 'Formatação de PC',
+    category: 'computador',
     description: 'Instalação limpa do Windows, drivers atualizados, pacote essencial e backup dos seus arquivos — tudo em até 24h.',
     price: 'R$ 120',
     linkLabel: 'Orçamento',
@@ -38,6 +43,7 @@ const services: Service[] = [
     icon: HardDrive,
     tag: 'Hardware',
     title: 'Upgrade de HD para SSD',
+    category: 'computador',
     description: 'Seu computador até 10x mais rápido. Clonagem do sistema sem perder seus arquivos e instalação de SSDs de marcas premium.',
     price: 'R$ 280',
     linkLabel: 'Orçamento',
@@ -76,9 +82,9 @@ const services: Service[] = [
 
 export function ServicesSection() {
   return (
-    <section className="py-20 px-4">
+    <section className="py-20">
       <div className="container">
-        <h2 id="servicos" className="text-[40px] font-semibold tracking-tight text-center mb-3">
+        <h2 className="text-[40px] font-semibold tracking-tight text-center mb-3">
           O que fazemos.
         </h2>
         <p className="text-xl text-card-foreground text-center max-w-[680px] mx-auto mb-14">
@@ -121,12 +127,17 @@ export function ServicesSection() {
                   ) : (
                     <div />
                   )}
-                  <span
+                  <Link
+                    href={{
+                      pathname: '/',
+                      query: { categoria: 'celular' },
+                      hash: 'orcamento',
+                    }}
                     className="text-sm font-medium flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
                     style={{ color: service.accent }}
                   >
                     {service.linkLabel} ›
-                  </span>
+                  </Link>
                 </div>
               </div>
             )
