@@ -1,3 +1,6 @@
+import { appSettings } from "@/config/app"
+import { generateWhatsAppLink } from "@/utils/generateWhatsAppLink"
+
 const disclaimer =
   'Os valores apresentados pelo orçamento online são estimativas baseadas em casos comuns. ' +
   'O orçamento final é confirmado após avaliação técnica do equipamento, que é gratuita e sem ' +
@@ -27,20 +30,20 @@ const columns = [
   {
     heading: 'Marcas',
     links: [
-      { label: 'Apple',     href: '#marcas' },
-      { label: 'Samsung',   href: '#marcas' },
-      { label: 'Xiaomi',    href: '#marcas' },
-      { label: 'Motorola',  href: '#marcas' },
-      { label: 'Ver todas', href: '#marcas' },
+      { label: 'Apple',     href: '/acessorios?brand=apple' },
+      { label: 'Samsung',   href: '/acessorios?brand=samsung' },
+      { label: 'Xiaomi',    href: '/acessorios?brand=xiaomi' },
+      { label: 'Motorola',  href: '/acessorios?brand=motorola' },
+      { label: 'Ver todas', href: '/acessorios' },
     ],
   },
   {
     heading: 'Atendimento',
     links: [
       { label: 'Orçamento online',        href: '#orcamento' },
-      { label: 'WhatsApp',                href: 'https://wa.me/5511999999999' },
-      { label: '(11) 9999-9999',          href: 'tel:+5511999999999' },
-      { label: 'contato@nicell.com.br',   href: 'mailto:contato@nicell.com.br' },
+      { label: 'WhatsApp',                href: generateWhatsAppLink('Olá, gostaria de mais informações.') },
+      { label: '(11) 9999-9999',          href: `tel:${appSettings.phone}` },
+      { label: 'contato@nicell.com.br',   href: `mailto:${appSettings.email}` },
     ],
   },
   {
