@@ -65,6 +65,15 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .animate-marquee-left {
+    animation-duration: 18s;
+  }
+  .animate-marquee-right {
+    animation-duration: 22s;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-left,
   .animate-marquee-right {
