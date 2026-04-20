@@ -13,10 +13,10 @@ export function AboveTheFold () {
           Celulares, computadores e consoles em um só lugar. Diagnóstico gratuito e orçamento em segundos.
         </p>
         <div className="flex flex-col md:flex-row items-center gap-4 mt-8 mb-10">
-          <AnchorButton>
+          <AnchorButton href="#orcamento">
           Gerar orçamento
           </AnchorButton>
-          <AnchorButton variant="text">
+          <AnchorButton variant="text" href="#servicos">
           Conheça nossos serviços
           </AnchorButton>
         </div>
