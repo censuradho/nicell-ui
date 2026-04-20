@@ -8,7 +8,7 @@ import { TopInfo } from "./components/TopInfo";
 import { Footer } from "@/components/Footer";
 
 export const metadata = {
-  title: "Assistência Técnica Premium - Conserto Rápido e Confiável",
+  title: "Assistência Técnica Acessível e de Qualidade - Conserto Rápido e Confiável",
   description: "Oferecemos serviços de conserto para celulares, computadores e consoles. Diagnóstico gratuito e orçamento em segundos. Confiança que dura.",
   keywords: "assistência técnica, conserto rápido, confiança, celulares, computadores, consoles, diagnóstico gratuito, orçamento em segundos",
 }
