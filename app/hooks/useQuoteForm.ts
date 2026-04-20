@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import config from '@/lib/quote.config.json'
+import { useSearchParams } from 'next/navigation'
 
 // ── schema ────────────────────────────────────────────────────────────────────
 
@@ -53,12 +54,14 @@ const STEP_FIELDS: Partial<Record<number, (keyof QuoteFormValues)[]>> = {
 
 export function useQuoteForm() {
   const TOTAL_STEPS = 5
+  const searchParams = useSearchParams()
+  const defaultCategory = searchParams.get('categoria')
   const [step, setStep] = useState(1)
 
   const form = useForm<QuoteFormValues>({
     resolver: zodResolver(quoteSchema),
     defaultValues: {
-      categoryId:  '',
+      categoryId:  defaultCategory || '',
       brand:       '',
       problemIds:  [],
       model:       '',
@@ -166,6 +169,16 @@ export function useQuoteForm() {
     return `https://wa.me/${config.whatsapp}?text=${msg}`
   }
 
+  useEffect(() => {
+    if (!defaultCategory) return
+    const cat = config.categories.find(c => c.id === defaultCategory)
+    if (cat && form.getValues('categoryId') !== cat.id && step === 1) {
+      form.setValue('categoryId', cat.id, { shouldValidate: true })
+      setStep(2)
+    }
+    // eslint-disable-next-line
+    }, [defaultCategory])
+    
   return {
     form,
     errors,
