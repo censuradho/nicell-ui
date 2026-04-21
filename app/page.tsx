@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Footer } from "@/components/Footer";
 import { AboveTheFold } from "./components/AboveTheFold";
 import { AccessoriesSection } from "./components/AccessoriesSection";
@@ -20,7 +21,9 @@ export default function Home() {
       <ServicesSection />
       <BrandsSection />
       <AccessoriesSection />
-      <QuoteSection />
+      <Suspense>
+        <QuoteSection />
+      </Suspense>
       <Footer />
     </main>
   );
