@@ -146,8 +146,6 @@ export function useQuoteForm() {
     scrollToForm()
   }
 
-  // ── whatsapp ──
-
   async function handleSendWhatsApp() {
     const valid = await trigger(['name', 'phone'])
     if (!valid) return
@@ -170,14 +168,25 @@ export function useQuoteForm() {
   }
 
   useEffect(() => {
-    if (!defaultCategory) return
-    const cat = config.categories.find(c => c.id === defaultCategory)
-    if (cat && form.getValues('categoryId') !== cat.id && step === 1) {
-      form.setValue('categoryId', cat.id, { shouldValidate: true })
-      setStep(2)
-    }
+    const cat = defaultCategory
+      ? config.categories.find(c => c.id === defaultCategory)
+      : null
+
+    resetForm({
+      categoryId:  cat?.id ?? '',
+      brand:       '',
+      problemIds:  [],
+      model:       '',
+      description: '',
+      name:        '',
+      phone:       '',
+    })
+    setTimeout(() => {
+      setStep(cat ? 2 : 1)
+      scrollToForm()
+    }, 0)
     // eslint-disable-next-line
-    }, [defaultCategory])
+  }, [defaultCategory])
     
   return {
     form,
