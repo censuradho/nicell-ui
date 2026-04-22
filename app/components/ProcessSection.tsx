@@ -1,5 +1,6 @@
 import { ClipboardList, FileSignature, MessageCircle, ScanSearch, Truck } from "lucide-react"
 import Link from "next/link"
+import { FadeIn } from "./FadeIn"
 
 const steps = [
   {
@@ -30,7 +31,7 @@ export function ProcessSection() {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          <div>
+          <FadeIn>
             <h2 className="text-[40px] font-semibold tracking-tight leading-[1.1] mb-5">
               Você acompanha tudo.<br />
               <span className="text-card-foreground font-medium">Nós documentamos tudo.</span>
@@ -41,7 +42,7 @@ export function ProcessSection() {
             </p>
 
             <div className="flex flex-col gap-3">
-              <div className="bg-white rounded-2xl border border-outline p-5 flex items-start gap-4">
+              <div className="bg-white rounded-2xl border border-outline p-5 flex items-start gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
                 <div className="w-10 h-10 rounded-xl bg-[rgba(37,211,102,0.10)] flex items-center justify-center shrink-0">
                   <MessageCircle size={20} color="#25D366" />
                 </div>
@@ -53,7 +54,7 @@ export function ProcessSection() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl border border-outline p-5 flex items-start gap-4">
+              <div className="bg-white rounded-2xl border border-outline p-5 flex items-start gap-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
                 <div className="w-10 h-10 rounded-xl bg-[rgba(0,113,227,0.08)] flex items-center justify-center shrink-0">
                   <ClipboardList size={20} color="#0071e3" />
                 </div>
@@ -73,28 +74,30 @@ export function ProcessSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </FadeIn>
 
           <div className="lg:pl-8">
             {steps.map((step, i) => {
               const Icon = step.icon
               const isLast = i === steps.length - 1
               return (
-                <div key={step.label} className="flex gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-9 h-9 rounded-xl bg-white border border-outline flex items-center justify-center shrink-0">
-                      <Icon size={17} className="text-primary" />
+                <FadeIn key={step.label} delay={i * 120}>
+                  <div className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <div className="w-9 h-9 rounded-xl bg-white border border-outline flex items-center justify-center shrink-0">
+                        <Icon size={17} className="text-primary" />
+                      </div>
+                      {!isLast && (
+                        <div className="w-px flex-1 bg-outline my-1 min-h-7" />
+                      )}
                     </div>
-                    {!isLast && (
-                      <div className="w-px flex-1 bg-outline my-1 min-h-7" />
-                    )}
-                  </div>
 
-                  <div className={`pt-1.5 ${isLast ? "" : "pb-7"}`}>
-                    <p className="text-sm font-semibold leading-snug mb-0.5">{step.label}</p>
-                    <p className="text-sm text-card-foreground leading-relaxed">{step.note}</p>
+                    <div className={`pt-1.5 ${isLast ? "" : "pb-7"}`}>
+                      <p className="text-sm font-semibold leading-snug mb-0.5">{step.label}</p>
+                      <p className="text-sm text-card-foreground leading-relaxed">{step.note}</p>
+                    </div>
                   </div>
-                </div>
+                </FadeIn>
               )
             })}
           </div>
