@@ -2,6 +2,7 @@ import { Gamepad2, HardDrive, Laptop, Shield, Smartphone, Truck, Wrench } from "
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { FadeIn } from "./FadeIn";
 
 interface Service {
   icon: LucideIcon
@@ -84,12 +85,14 @@ export function ServicesSection() {
   return (
     <section className="py-20 px-4">
       <div className="container">
-        <h2 className="text-[40px] font-semibold tracking-tight text-center mb-3">
-          O que fazemos.
-        </h2>
-        <p className="text-xl text-card-foreground text-center max-w-[680px] mx-auto mb-14">
-          Equipe especializada, peças originais e diagnóstico transparente.
-        </p>
+        <FadeIn className="text-center mb-14">
+          <h2 className="text-[40px] font-semibold tracking-tight mb-3">
+            O que fazemos.
+          </h2>
+          <p className="text-xl text-card-foreground max-w-170 mx-auto">
+            Equipe especializada, peças originais e diagnóstico transparente.
+          </p>
+        </FadeIn>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {services.map((service) => {
