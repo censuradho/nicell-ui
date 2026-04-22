@@ -6,6 +6,7 @@ import { BrandsSection } from "./components/BrandsSection";
 import { Header } from "./components/Header";
 import { QuoteSection } from "./components/QuoteSection";
 import { ServicesSection } from "./components/ServicesSection";
+import { ProcessSection } from "./components/ProcessSection";
 
 export const metadata = {
   title: "Assistência Técnica Acessível e de Qualidade - Conserto Rápido e Confiável",
@@ -21,6 +22,7 @@ export default function Home() {
       <ServicesSection />
       <BrandsSection />
       <AccessoriesSection />
+      <ProcessSection />
       <Suspense>
         <QuoteSection />
       </Suspense>
