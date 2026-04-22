@@ -183,7 +183,7 @@ export function useQuoteForm() {
     })
     setTimeout(() => {
       setStep(cat ? 2 : 1)
-      scrollToForm()
+      if (cat) scrollToForm()
     }, 0)
     // eslint-disable-next-line
   }, [defaultCategory])
