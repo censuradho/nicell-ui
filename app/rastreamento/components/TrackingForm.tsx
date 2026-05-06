@@ -141,7 +141,7 @@ export function TrackingForm() {
             </header>
             <ul>
               {codes.map(code => {
-                const isCurrentStatusSince = code.statusHistory.find(status => status.status === code.status)?.createdAt || new Date().toISOString()
+                const isCurrentStatusSince = code.createdAt
 
                 return (
                   <li 
