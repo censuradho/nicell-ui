@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { Lato, Geist } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const lato = Lato({
   variable: "--font-lato",
@@ -23,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lato.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", lato.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col">
         {children}
