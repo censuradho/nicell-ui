@@ -1,7 +1,11 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "../components/Header";
-import { TrackingForm } from "./components/TrackingForm";
+import dynamic from 'next/dynamic'
+
 import { Suspense } from "react";
+
+const TrackingForm = dynamic(() => import('./components/TrackingForm')
+  .then(mod => mod.TrackingForm))
 
 export const metadata = {
   title: 'Rastreamento de Ordem de Serviço - Nicell Assistência Técnica',
@@ -13,7 +17,7 @@ export default function RastreamentoPage() {
     <main className="bg-card">
       <Header />
       <div className="min-h-[calc(100vh-86px)] flex flex-col items-center justify-center gap-6 px-4">
-        <Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
           <TrackingForm />
         </Suspense>
       </div>
