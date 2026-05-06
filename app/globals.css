@@ -7,6 +7,7 @@
   --primary: #0071E3;
   --card: #F5F5F7;
   --card-foreground: #6E6E73;
+  --muted: #F7F5F3;
   --accent: #E7EDF5;
   --primary: #0071E3;
   --primary-foreground: #ffffff;
@@ -21,6 +22,7 @@
   --color-background-glass: var(--background-glass);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
@@ -34,6 +36,10 @@
 @layer utilities {
   .container {
     @apply mx-auto w-full max-w-180 lg:max-w-6xl xl:max-w-7xl
+  }
+
+  .container-md {
+    @apply mx-auto w-full max-w-180 lg:max-w-2xl
   }
   .anchor {
     @apply hover:underline
