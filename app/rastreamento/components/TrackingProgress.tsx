@@ -68,7 +68,7 @@ export function TrackingProgress(props: TrackingProgressProps) {
       </Card.Root>
 
       <Card.Root className="mt-4">
-        <Card.Header className="p-4 border-b border-outline">
+        <Card.Header className="p-4">
           <Card.Title className="text-xs uppercase tracking-wider text-card-foreground font-semibold">
       Histórico do reparo
           </Card.Title>
