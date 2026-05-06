@@ -63,6 +63,75 @@ export function TrackingProgress(props: TrackingProgressProps) {
           </div>
         </header>
       </Card.Root>
+
+      <Card.Root className="mt-4">
+        <Card.Header className="p-4 border-b border-outline">
+          <Card.Title className="text-xs uppercase tracking-wider text-card-foreground font-semibold">
+      Histórico do reparo
+          </Card.Title>
+        </Card.Header>
+  
+        <Card.Content className="p-6">
+          <div className="flex flex-col">
+      
+            {/* Item 1: Concluído */}
+            <div className="relative flex gap-4 pb-8">
+              {/* Linha Conectora individual */}
+              <div className="absolute left-[17px] top-9 bottom-0 w-0.5 bg-outline" />
+        
+              <div className="z-10 flex items-center justify-center size-9 rounded-full bg-primary border-2 border-primary text-primary-foreground shadow-sm">
+                <Icon name="Check" size={16} />
+              </div>
+              <div className="flex flex-col gap-1 pt-1">
+                <h3 className="text-sm font-semibold">Aparelho recebido</h3>
+                <span className="text-[10px] font-mono text-card-foreground">24/04/2026 · 14:08</span>
+                <p className="text-sm text-card-foreground mt-1 bg-muted p-3 rounded-lg">
+            Recebemos seu aparelho e registramos a entrada no sistema.
+                </p>
+              </div>
+            </div>
+
+            {/* Item 2: Corrente (Com Pulse apenas no Background) */}
+            <div className="relative flex gap-4 pb-8">
+              <div className="absolute left-[17px] top-9 bottom-0 w-0.5 bg-outline" />
+        
+              <div className="relative z-10 flex items-center justify-center size-9">
+                {/* Elemento de pulsação (Apenas Cor/Background) */}
+                <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+          
+                {/* Indicador Estático */}
+                <div className="relative size-full rounded-full bg-background border-2 border-primary text-primary flex items-center justify-center shadow-sm">
+                  <Icon name="Wrench" size={16} />
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-1 pt-1">
+                <h3 className="text-sm font-bold text-primary">Em reparo</h3>
+                <span className="text-[10px] font-mono text-card-foreground">Iniciado em 05/05/2026</span>
+                <div className="flex gap-2 mt-2">
+                  <div className="size-16 rounded-md bg-muted border border-outline flex items-center justify-center text-card-foreground/30">
+                    <Icon name="Camera" size={20} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Item 3: Futuro (Sem linha atravessando) */}
+            <div className="relative flex gap-4">
+              {/* Note que aqui não há a div da linha, pois é o último item */}
+              <div className="z-10 flex items-center justify-center size-9 rounded-full bg-muted border-2 border-outline text-card-foreground/50 opacity-50">
+                <Icon name="Bell" size={16} />
+              </div>
+              <div className="flex flex-col gap-1 pt-1 opacity-50">
+                <h3 className="text-sm font-medium">Pronto para retirada</h3>
+                <span className="text-[10px] font-mono">Aguardando finalização</span>
+              </div>
+            </div>
+
+          </div>
+        </Card.Content>
+      </Card.Root>
+
       <Card.Root>
         <Card.Header className="p-4">
           <Card.Title>Precisa falar com a gente?</Card.Title>
