@@ -19,6 +19,7 @@ export interface ServiceOrderTrackingResponse {
     status: OSStatus,
     estimatedDelivery: string,
     createdAt: string,
+    accessories: string[]
     partner: { name: string }
     technician: {
         name: string,
@@ -35,4 +36,9 @@ export interface ServiceOrderTrackingResponse {
             createdAt: string
         }
     ]
+    items: Array<{
+        name: string,
+        quantity: number,
+        price: string
+    }>
 }
