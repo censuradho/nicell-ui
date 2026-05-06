@@ -8,10 +8,18 @@ import {
   Monitor,
   ChevronRight,
   ChevronLeft,
-  Phone
+  Phone,
+  Check,
+  Camera,
+  Bell,
+  Wrench
 } from 'lucide-react'
 
 export const icons = {
+  Wrench,
+  Bell,
+  Camera,
+  Check,
   Phone,
   ChevronLeft,
   Smartphone,
