@@ -12,10 +12,18 @@ import {
   Check,
   Camera,
   Bell,
-  Wrench
+  Wrench,
+  PartyPopper,
+  ClipboardCheck,
+  ClipboardClock,
+  Clock8
 } from 'lucide-react'
 
 export const icons = {
+  Clock8,
+  ClipboardClock,
+  ClipboardCheck,
+  PartyPopper,
   Wrench,
   Bell,
   Camera,
