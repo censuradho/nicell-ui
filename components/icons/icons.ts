@@ -6,10 +6,14 @@ import {
   Gamepad2,
   Watch,
   Monitor,
-  ChevronRight
+  ChevronRight,
+  ChevronLeft,
+  Phone
 } from 'lucide-react'
 
 export const icons = {
+  Phone,
+  ChevronLeft,
   Smartphone,
   Tablet,
   Laptop,
