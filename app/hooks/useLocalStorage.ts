@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+'use client'
 
+import { useCallback, useEffect, useState } from "react";
 export function useLocalStorage <T>(key: string, initialState: T, persist = true): [T, (value: T | ((val: T) => T)) => void] {
   const [storedValue, setStoredValue] = useState<T>(() => {
     if (!persist) return initialState;
