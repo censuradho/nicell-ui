@@ -1,6 +1,7 @@
 import { Icon } from "@/components/icons";
 import { RangeProgress } from "@/components/RangeProgress";
-import { getOSProgress, OS_STATUS_LABELS } from "@/constants/serviceOrder";
+import { Skeleton } from "@/components/ui/skeleton"; // Certifique-se de ter esse componente
+import { getOSProgress, OS_PROGRESS_STAGES, OS_STATUS_LABELS, STATUS_METADATA } from "@/constants/serviceOrder";
 import { ServiceOrderTrackingResponse } from "@/services/types";
 import { format } from 'date-fns'
 import * as Card from './Card'
@@ -11,29 +12,26 @@ import { appSettings } from "@/config/app";
 import { generateWhatsAppLink } from "@/utils/generateWhatsAppLink";
 
 interface TrackingProgressProps {
-  data: ServiceOrderTrackingResponse
+  data?: ServiceOrderTrackingResponse | null
   onBackward: () => void
+  loading?: boolean
 }
-export function TrackingProgress(props: TrackingProgressProps) {
-  const {
-    data,
-    onBackward
-  } = props
 
+export function TrackingProgress({ data, onBackward, loading }: TrackingProgressProps) {
   const {
     device,
     partner,
     createdAt,
     estimatedDelivery,
-    status,
+    status = '',
     trackingCode,
-    accessories,
+    accessories = [],
     technician
-  } = data
+  } = data || {}
 
   const progress = getOSProgress(status)
 
-  return ( 
+  return (
     <div className="flex flex-col gap-2 w-full h-full flex-1 container-md py-10">
       <button 
         onClick={() => onBackward()}
@@ -41,149 +39,164 @@ export function TrackingProgress(props: TrackingProgressProps) {
         <Icon name="ChevronLeft" size={14}/>
         Consultar outro código
       </button>
+
+      {/* CARD PRINCIPAL: STATUS E PROGRESSO */}
       <Card.Root className="mt-4">
         <header className="rounded-md overflow-hidden bg-background">
           <div className="bg-primary p-4">
-            <strong className="text-xs bg-primary-foreground/20 py-1 px-2.5 rounded-full text-primary-foreground">#{String(trackingCode).padStart(4, '0')}</strong>
-            <h1 className="text-md text-primary-foreground font-semibold mt-4">{device?.brand} {device?.model}</h1>
-            <p className="text-xs text-primary-foreground mt-2">Olá, {partner.name}! Estamos cuidando do seu aparelho</p>
+            {loading ? (
+              <>
+                <Skeleton className="h-5 w-16 rounded-full bg-primary-foreground/20" />
+                <Skeleton className="h-7 w-48 mt-4 bg-primary-foreground/20" />
+                <Skeleton className="h-4 w-64 mt-2 bg-primary-foreground/20" />
+              </>
+            ) : (
+              <>
+                <strong className="text-xs bg-primary-foreground/20 py-1 px-2.5 rounded-full text-primary-foreground">#{String(trackingCode).padStart(4, '0')}</strong>
+                <h1 className="text-md text-primary-foreground font-semibold mt-4">{device?.brand} {device?.model}</h1>
+                <p className="text-xs text-primary-foreground mt-2">Olá, {partner?.name}! Estamos cuidando do seu aparelho</p>
+              </>
+            )}
           </div>
-          <div className="p-4 flex flex-col">
-            <span className="text-xs text-card-foreground uppercase font-semibold">Status atual</span>
-            <span className="text-lg text-foreground font-bold">{OS_STATUS_LABELS[status as keyof typeof OS_STATUS_LABELS]}</span>
-            <p className="text-xs mt-2 text-card-foreground">Iniciado em <strong>{format(new Date(createdAt), 'dd/MM/yyyy')}</strong> às <strong>{format(new Date(createdAt), 'HH:mm')}</strong> — previsão de conclusão em <strong>{format(new Date(estimatedDelivery), 'dd/MM/yyyy')}</strong></p>
-          </div>
+          
           <div className="p-4 flex flex-col gap-2">
-            <RangeProgress 
-              percentage={progress.percentage}
-            />
+            <span className="text-xs text-card-foreground uppercase font-semibold">Status atual</span>
+            {loading ? (
+              <>
+                <Skeleton className="h-8 w-40" />
+                <Skeleton className="h-4 w-full mt-1" />
+              </>
+            ) : (
+              <>
+                <span className="text-lg text-foreground font-bold">{OS_STATUS_LABELS[status as keyof typeof OS_STATUS_LABELS]}</span>
+                <p className="text-xs text-card-foreground">
+                  Iniciado em <strong>{createdAt ? format(new Date(createdAt), 'dd/MM/yyyy') : '--'}</strong> às <strong>{createdAt ? format(new Date(createdAt), 'HH:mm') : '--'}</strong> — previsão de conclusão em <strong>{estimatedDelivery ? format(new Date(estimatedDelivery), 'dd/MM/yyyy') : '--'}</strong>
+                </p>
+              </>
+            )}
+          </div>
+
+          <div className="p-4 flex flex-col gap-2">
+            {loading ? (
+              <Skeleton className="h-3 w-full rounded-full" />
+            ) : (
+              <RangeProgress percentage={progress.percentage} />
+            )}
             <div className="flex justify-between items-center">
-              <span className="text-xs">
-                <strong>{progress.current}</strong> de <span>{progress.total}</span> concluídas
-              </span>
-              <span className="text-xs text-card-foreground">{progress.percentage}% concluído</span>
+              {loading ? (
+                <>
+                  <Skeleton className="h-3 w-24" />
+                  <Skeleton className="h-3 w-16" />
+                </>
+              ) : (
+                <>
+                  <span className="text-xs">
+                    <strong>{progress.current}</strong> de <span>{progress.total}</span> concluídas
+                  </span>
+                  <span className="text-xs text-card-foreground">{progress.percentage}% concluído</span>
+                </>
+              )}
             </div>
           </div>
         </header>
       </Card.Root>
 
-      <Card.Root className="mt-4">
+      {/* CARD HISTÓRICO: TRATADO VIA COMPONENTE TRACKHISTORY */}
+      <Card.Root>
         <Card.Header className="p-4">
-          <Card.Title className="text-xs uppercase tracking-wider text-card-foreground font-semibold">
-      Histórico do reparo
-          </Card.Title>
+          <Card.Title>Histórico do reparo</Card.Title>
         </Card.Header>
-  
         <Card.Content className="p-6">
+          {loading ? (
+          // Skeleton Loader (conforme definido anteriormente)
+            Array.from({ length: 3 }).map((_, i) => (
+              <TrackHistory.Root key={i}>
+                <TrackHistory.Indicator icon="Bell" />
+                <div className="flex flex-col gap-2 w-full pt-1">
+                  <Skeleton className="h-4 w-32" />
+                  <Skeleton className="h-12 w-full rounded-lg" />
+                </div>
+              </TrackHistory.Root>
+            ))
+          ) : (
+            OS_PROGRESS_STAGES.map((stage, index) => {
+            // Verifica se este estágio já aconteceu (está no histórico)
+              const historyItem = data?.statusHistory.find(h => h.status === stage);
+              const isCurrent = data?.status === stage;
+              const isDone = !!historyItem && !isCurrent;
+      
+              // Se não está no histórico e não é o atual, é um estágio futuro
+              const isFuture = !historyItem && !isCurrent;
 
-          <TrackHistory.Root>
-            <TrackHistory.ConnectLine />
-            <TrackHistory.Indicator 
-              icon="Clock8"
-              done
-            />
-            <TrackHistory.Content 
-              date="24/04/2026 · 14:08"
-              label="Aparelho recebido"
-              note="Recebemos seu iPhone 14 Pro junto com capa, película e chip. Tudo registrado com fotos no momento da entrega."
-            />
-          </TrackHistory.Root>
-          
-          <TrackHistory.Root>
-            <TrackHistory.ConnectLine />
-            <TrackHistory.Indicator 
-              icon="ClipboardClock"
-              done
-            />
-            <TrackHistory.Content 
-              date="24/04/2026 · 14:08"
-              label="Aguardando aprovação do orçamento"
-              note="Enviamos o orçamento detalhado para você via WhatsApp. Total: R$ 1.480,00."
-            />
-          </TrackHistory.Root>
-          <TrackHistory.Root>
-            <TrackHistory.ConnectLine />
-            <TrackHistory.Indicator 
-              icon="ClipboardCheck"
-              done
-            />
-            <TrackHistory.Content 
-              date="24/04/2026 · 14:08"
-              label="Orçamento aprovado por você"
-              note="Obrigado pela confirmação!"
-            />
-          </TrackHistory.Root>
-          <TrackHistory.Root>
-            <TrackHistory.ConnectLine />
-            <TrackHistory.Indicator 
-              icon="Wrench"
-              isCurrent
-            />
-            <TrackHistory.Content 
-              date="24/04/2026 · 15:40"
-              label="Em reparo"
-              note="Marcos está com seu aparelho na bancada. Bateria já substituída — agora trocando o conector."
-            />
-          </TrackHistory.Root>
-          <TrackHistory.Root>
-            <TrackHistory.ConnectLine />
-            <TrackHistory.Indicator 
-              icon="Bell"
-            />
-            <TrackHistory.Content 
-              date="previsto para 30/04/2026"
-              label="Pronto para retirada"
-            />
-          </TrackHistory.Root>
-          <TrackHistory.Root>
-            <TrackHistory.Indicator 
-              icon="PartyPopper"
-            />
-            <TrackHistory.Content 
-              label="Aparelho entregue"
-            />
-          </TrackHistory.Root>
+              // Se o status for CANCELLED, você pode adicionar uma lógica extra, 
+              // mas aqui seguimos o fluxo feliz de OS_PROGRESS_STAGES.
+      
+              const metadata = STATUS_METADATA[stage] || { label: stage, icon: 'Circle' };
+
+              return (
+                <TrackHistory.Root key={stage}>
+                  {/* Linha conectora: não renderiza no último item da lista */}
+                  {index !== OS_PROGRESS_STAGES.length - 1 && (
+                    <TrackHistory.ConnectLine />
+                  )}
+
+                  <TrackHistory.Indicator 
+                    icon={metadata.icon}
+                    done={isDone}
+                    isCurrent={isCurrent}
+                  />
+
+                  <TrackHistory.Content 
+                    label={metadata.label}
+                    date={historyItem ? format(new Date(historyItem.createdAt), "dd/MM/yyyy · HH:mm") : undefined}
+                    note={historyItem?.notes || undefined}
+                  />
+                </TrackHistory.Root>
+              );
+            })
+          )}
         </Card.Content>
       </Card.Root>
+
+      {/* CARD DETALHES DO APARELHO */}
       <Card.Root className="mt-4">
         <Card.Header className="p-4">
           <Card.Title>Aparelho na assistência</Card.Title>
         </Card.Header>
         <Card.Content>
-          <ul className="">
-            <li className="flex justify-between border-b border-outline py-2">
-              <span className="text-sm">Modelo</span>
-              <span className="text-sm font-semibold">{device.model} · {device.brand}</span>
-            </li>
-            <li className="flex justify-between border-b border-outline py-2">
-              <span className="text-sm">Acessórios</span>
-              <span className="text-sm font-semibold">{accessories.join(' · ')}</span>
-            </li>
-            <li className="flex justify-between border-b border-outline py-2">
-              <span className="text-sm">Recebido em</span>
-              <span className="text-sm font-semibold">{new Date(createdAt).toLocaleDateString()}</span>
-            </li>
-            <li className="flex justify-between py-2">
-              <span className="text-sm">Técnico responsável</span>
-              <span className="text-sm font-semibold">{technician.name}</span>
-            </li>
+          <ul className="flex flex-col">
+            {[
+              { label: 'Modelo', value: device ? `${device.model} · ${device.brand}` : null },
+              { label: 'Acessórios', value: accessories?.length > 0 ? accessories.join(' · ') : 'Nenhum' },
+              { label: 'Recebido em', value: createdAt ? new Date(createdAt).toLocaleDateString() : null },
+              { label: 'Técnico responsável', value: technician?.name }
+            ].map((item, idx) => (
+              <li key={idx} className={`flex justify-between py-2 ${idx !== 3 ? 'border-b border-outline' : ''}`}>
+                <span className="text-sm">{item.label}</span>
+                {loading ? (
+                  <Skeleton className="h-4 w-32" />
+                ) : (
+                  <span className="text-sm font-semibold">{item.value}</span>
+                )}
+              </li>
+            ))}
           </ul>
         </Card.Content>
       </Card.Root>
+
+      {/* CONTATO (Mantém botões mas esconde dados sensíveis) */}
       <Card.Root>
         <Card.Header className="p-4">
           <Card.Title>Precisa falar com a gente?</Card.Title>
           <Card.Content className="flex items-center gap-4">
             <a 
               className="flex items-center gap-4 border border-outline rounded-xl p-4 w-full hover:bg-card transition"
-              href={generateWhatsAppLink(appSettings.phone, `Olá, gostaria de saber mais informações sobre a minha ordem de serviço (código: ${trackingCode})`)}
+              href={!loading ? generateWhatsAppLink(appSettings.phone, `Olá, gostaria de saber mais sobre a OS #${trackingCode}`) : '#'}
             >
-              <div className="size-10 rounded-full flex items-center justify-center bg-[#E7F6ED]">
-                <WhatsApp 
-                  className="size-5 text-[#16A34A]"
-                />
+              <div className="size-10 rounded-full flex items-center justify-center bg-[#E7F6ED] shrink-0">
+                <WhatsApp className="size-5 text-[#16A34A]" />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-1">
                 <span className="text-xs text-card-foreground">Atendimento rápido</span>
                 <strong className="text-sm">WhatsApp</strong>
               </div>
@@ -192,15 +205,12 @@ export function TrackingProgress(props: TrackingProgressProps) {
               className="flex items-center gap-4 border border-outline rounded-xl p-4 w-full hover:bg-card transition"
               href={`tel:${appSettings.phone.replace(/\D/g, '')}`}
             >
-              <div className="size-10 rounded-full flex items-center justify-center bg-muted text-card-foreground">
-                <Icon
-                  name="Phone" 
-                  size={16}
-                />
+              <div className="size-10 rounded-full flex items-center justify-center bg-muted text-card-foreground shrink-0">
+                <Icon name="Phone" size={16} />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col gap-1">
                 <span className="text-xs text-card-foreground">Telefone</span>
-                <strong className="text-sm">{appSettings.phone}</strong>
+                {loading ? <Skeleton className="h-4 w-24" /> : <strong className="text-sm">{appSettings.phone}</strong>}
               </div>
             </a>
           </Card.Content>
