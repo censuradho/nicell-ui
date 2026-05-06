@@ -24,7 +24,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>
 
-type Status = 'idle' | 'loading' | 'not-found'
+type Status = 'idle' | 'loading' | 'not-found' | 'loading-code'
 
 export function TrackingForm() {
   const [status, setStatus] = useState<Status>('idle')
@@ -61,7 +61,7 @@ export function TrackingForm() {
   }
 
   async function handleCodeClick(code: string) {
-    setStatus('loading')
+    setStatus('loading-code')
 
     try {
       const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${code}`)
@@ -98,11 +98,11 @@ export function TrackingForm() {
   console.log(status)
   return (
     <>
-      {(trackingData || status === 'loading') && (        
+      {(trackingData || status === 'loading-code') && (        
         <TrackingProgress 
           data={trackingData} 
           onBackward={() => setTrackingData(null)} 
-          loading={status === 'loading'}
+          loading={status === 'loading-code'}
         />
       )}
       {!trackingData && (
