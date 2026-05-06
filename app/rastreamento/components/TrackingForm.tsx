@@ -60,10 +60,15 @@ export function TrackingForm() {
     }
   }
 
+  async function handleCodeClick(code: string) {
+    const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${code}`)
+    setTrackingData(response)
+  }
+
   return (
     <>
       {trackingData && (
-        <TrackingProgress {...trackingData} />
+        <TrackingProgress data={trackingData} onBackward={() => setTrackingData(null)} />
       )}
       {!trackingData && (
         <div className="min-h-[calc(100vh-86px)] flex flex-col items-center justify-center gap-6 px-4">
@@ -94,7 +99,7 @@ export function TrackingForm() {
             </form>
 
             <span className="text-sm text-card-foreground pt-6">
-          Exemplos: NI-3A66ZOMT  |  NI-B12FKR9X  |  NI-7QWE4521
+              Você recebe o código por WhatsApp ao deixar o aparelho
             </span>
 
             {status === 'not-found' && (
@@ -107,34 +112,32 @@ export function TrackingForm() {
               </div>
             )}
           </div>
-          {codes.length > 0 && (
-            <section className="border border-outline bg-background w-full rounded-lg">
-              <header className="p-4 border-b border-outline">
-                <h2 className="text-[10px] uppercase text-card-foreground font-medium">Consultas recentes</h2>
-              </header>
-              <ul>
-                {codes.map(code => (
-                  <li 
-                    key={code.trackingCode} 
-                    className="px-4 py-2 border-b border-outline last:border-0 cursor-pointer hover:bg-card/50 flex items-center gap-3" 
-                    onClick={() => setTrackingData(code)}
-                  >
-                    <div className="size-8 bg-card rounded flex items-center justify-center text-card-foreground">
-                      <Icon 
-                        size={14}
-                        name={DEVICE_TYPE_ICONS[code.device.type as keyof typeof DEVICE_TYPE_ICONS]} />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs text-card-foreground">#{String(code.displayId).padStart(4, '0')}</span>
-                      <span className="text-sm text-foreground font-semibold">{code.device.brand} {code.device.model}</span>
-                      <span className="text-xs text-card-foreground pt-2">{OS_STATUS_LABELS[code.status as keyof typeof OS_STATUS_LABELS]} ·  desde {new Date(code.createdAt).toLocaleDateString()}</span>
-                    </div>
-                    <Icon name="ChevronRight" size={16} className="ml-auto text-card-foreground" aria-hidden="true" />
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          <section className="border border-outline bg-background w-full rounded-lg">
+            <header className="p-4 border-b border-outline">
+              <h2 className="text-[10px] uppercase text-card-foreground font-medium">Consultas recentes</h2>
+            </header>
+            <ul>
+              {codes.map(code => (
+                <li 
+                  key={code.trackingCode} 
+                  className="px-4 py-2 border-b border-outline last:border-0 cursor-pointer hover:bg-card/50 flex items-center gap-3" 
+                  onClick={() => handleCodeClick(code.trackingCode)}
+                >
+                  <div className="size-8 bg-card rounded flex items-center justify-center text-card-foreground">
+                    <Icon 
+                      size={14}
+                      name={DEVICE_TYPE_ICONS[code.device.type as keyof typeof DEVICE_TYPE_ICONS]} />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-card-foreground">#{String(code.displayId).padStart(4, '0')}</span>
+                    <span className="text-sm text-foreground font-semibold">{code.device.brand} {code.device.model}</span>
+                    <span className="text-xs text-card-foreground pt-2">{OS_STATUS_LABELS[code.status as keyof typeof OS_STATUS_LABELS]} ·  desde {new Date(code.createdAt).toLocaleDateString()}</span>
+                  </div>
+                  <Icon name="ChevronRight" size={16} className="ml-auto text-card-foreground" aria-hidden="true" />
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       )}
     </>
