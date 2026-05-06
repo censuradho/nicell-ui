@@ -16,10 +16,12 @@ import {
   PartyPopper,
   ClipboardCheck,
   ClipboardClock,
-  Clock8
+  Clock8,
+  ClipboardList
 } from 'lucide-react'
 
 export const icons = {
+  ClipboardList,
   Clock8,
   ClipboardClock,
   ClipboardCheck,
