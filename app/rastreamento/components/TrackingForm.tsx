@@ -9,6 +9,11 @@ import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
 import { api } from '@/services/api'
 import { ServiceOrderTrackingResponse } from '@/services/types'
+import { TrackingProgress } from './TrackingProgress'
+import { useLocalStorage } from '@/app/hooks/useLocalStorage'
+import { Icon } from '@/components/icons'
+import { DEVICE_TYPE_ICONS } from '@/constants/devices'
+import { OS_STATUS_LABELS } from '@/constants/serviceOrder'
 
 const schema = z.object({
   codigo: z
@@ -23,6 +28,8 @@ type Status = 'idle' | 'loading' | 'not-found'
 
 export function TrackingForm() {
   const [status, setStatus] = useState<Status>('idle')
+  const [codes, setCodes] = useLocalStorage<ServiceOrderTrackingResponse[]>('nicell-tracking-codes', [])
+
   const [trackingData, setTrackingData] = useState<ServiceOrderTrackingResponse | null>(null)
 
   const {
@@ -36,7 +43,16 @@ export function TrackingForm() {
   async function onSubmit(data: FormData ) {
     try {
       setStatus('loading')
+      const cacheCode = codes.find(code => code.trackingCode === data.codigo)
+      if (cacheCode) {
+        setTrackingData(cacheCode)
+        setStatus('idle')
+        return
+      }
+
       const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${data.codigo}`)
+
+      setCodes(prev => [...prev, response])
       setTrackingData(response)
       setStatus('idle')
     } catch (error) {
@@ -46,15 +62,18 @@ export function TrackingForm() {
 
   return (
     <>
+      {trackingData && (
+        <TrackingProgress {...trackingData} />
+      )}
       {!trackingData && (
         <div className="min-h-[calc(100vh-86px)] flex flex-col items-center justify-center gap-6 px-4">
           <h1 className="text-base sm:text-lg md:text-xl text-card-foreground">Rastreamento</h1>
           <h2 className="text-5xl text-center font-bold">Acompanhe seu reparo.</h2>
           <p className="text-2xl text-center">Digite o numero da OS para ver o status em tempo real.</p>
-          <div className="w-full max-w-[780px] items-center flex flex-col gap-2 bg-background rounded-2xl p-6">
+          <div className="w-full max-w-[780px] border border-outline items-center flex flex-col gap-2 bg-background rounded-2xl p-6">
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="w-full flex items-start gap-4"
+              className="w-full grid md:grid-cols-[1fr_auto] items-start gap-4"
               noValidate
             >
               <Input
@@ -88,6 +107,34 @@ export function TrackingForm() {
               </div>
             )}
           </div>
+          {codes.length > 0 && (
+            <section className="border border-outline bg-background w-full rounded-lg">
+              <header className="p-4 border-b border-outline">
+                <h2 className="text-[10px] uppercase text-card-foreground font-medium">Consultas recentes</h2>
+              </header>
+              <ul>
+                {codes.map(code => (
+                  <li 
+                    key={code.trackingCode} 
+                    className="px-4 py-2 border-b border-outline last:border-0 cursor-pointer hover:bg-card/50 flex items-center gap-3" 
+                    onClick={() => setTrackingData(code)}
+                  >
+                    <div className="size-8 bg-card rounded flex items-center justify-center text-card-foreground">
+                      <Icon 
+                        size={14}
+                        name={DEVICE_TYPE_ICONS[code.device.type as keyof typeof DEVICE_TYPE_ICONS]} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs text-card-foreground">#{String(code.displayId).padStart(4, '0')}</span>
+                      <span className="text-sm text-foreground font-semibold">{code.device.brand} {code.device.model}</span>
+                      <span className="text-xs text-card-foreground pt-2">{OS_STATUS_LABELS[code.status as keyof typeof OS_STATUS_LABELS]} ·  desde {new Date(code.createdAt).toLocaleDateString()}</span>
+                    </div>
+                    <Icon name="ChevronRight" size={16} className="ml-auto text-card-foreground" aria-hidden="true" />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </div>
       )}
     </>
