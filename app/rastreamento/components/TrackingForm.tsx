@@ -32,7 +32,7 @@ export function TrackingForm() {
   const code = searchParams.get('code')
 
   const [status, setStatus] = useState<Status>('idle')
-  const [codes, setCodes] = useLocalStorage<ServiceOrderTrackingResponse[]>('nicell-tracking-code', [])
+  const [codes, setCodes] = useLocalStorage<ServiceOrderTrackingResponse[]>('nicell-track-codes', [])
 
   const [trackingData, setTrackingData] = useState<ServiceOrderTrackingResponse | null>(null)
 
