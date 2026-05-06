@@ -50,7 +50,15 @@ export function TrackingForm() {
 
       const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${data.codigo}`)
 
-      setCodes(prev => [...prev, response])
+      setCodes(prev => {
+        const existingIndex = prev.findIndex(c => c.trackingCode === data.codigo)
+        if (existingIndex !== -1) {
+          const updatedCodes = [...prev]
+          updatedCodes[existingIndex] = response
+          return updatedCodes
+        }
+        return [...prev, response]
+      })
       setTrackingData(response)
       setStatus('idle')
     } catch (error) {
