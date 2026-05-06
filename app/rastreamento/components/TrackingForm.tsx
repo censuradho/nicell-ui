@@ -47,13 +47,6 @@ export function TrackingForm() {
   async function onSubmit(data: FormData ) {
     try {
       setStatus('loading')
-      const cacheCode = codes.find(code => code.trackingCode === data.codigo)
-
-      if (cacheCode) {
-        setTrackingData(cacheCode)
-        setStatus('idle')
-        return
-      }
 
       const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${data.codigo}`)
 
