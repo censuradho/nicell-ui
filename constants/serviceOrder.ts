@@ -35,6 +35,15 @@ export const OS_PROGRESS_STAGES = [
   OS_STATUS.FINISHED,
 ]
 
+export const STATUS_METADATA: Record<string, { label: string; icon: IconNames }> = {
+  PENDING: { label: 'Aparelho recebido', icon: 'Clock8' },
+  UNDER_ANALYSIS: { label: 'Em análise técnica', icon: 'ClipboardList' },
+  WAITING_APPROVAL: { label: 'Aguardando aprovação', icon: 'ClipboardClock' },
+  IN_REPAIR: { label: 'Em reparo', icon: 'Wrench' },
+  READY_FOR_DELIVERY: { label: 'Pronto para retirada', icon: 'Bell' },
+  FINISHED: { label: 'Aparelho entregue', icon: 'PartyPopper' },
+};
+
 export const PRIORITY = {
   LOW: 'LOW',
   MEDIUM: 'MEDIUM',
