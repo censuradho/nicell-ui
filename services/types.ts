@@ -26,6 +26,7 @@ export interface ServiceOrderTrackingResponse {
     device: {
         brand: string,
         model: string
+        type: string
     },
     statusHistory: [
         {
