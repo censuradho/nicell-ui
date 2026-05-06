@@ -1,4 +1,4 @@
 export const appSettings = {
-  phone: '5551982397632',
+  phone: '51991587131',
   email: 'contato@nicell.com.br'
 }
