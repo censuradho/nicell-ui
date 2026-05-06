@@ -121,7 +121,7 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
           ) : (
             OS_PROGRESS_STAGES.map((stage, index) => {
             // Verifica se este estágio já aconteceu (está no histórico)
-              const historyItem = data?.statusHistory.find(h => h.status === stage);
+              const historyItem = data?.statusHistory?.find(h => h.status === stage);
               const isCurrent = data?.status === stage;
               const isDone = !!historyItem && !isCurrent;
       
