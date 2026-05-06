@@ -4,6 +4,7 @@ import { getOSProgress, OS_STATUS_LABELS } from "@/constants/serviceOrder";
 import { ServiceOrderTrackingResponse } from "@/services/types";
 import { format } from 'date-fns'
 import * as Card from './Card'
+import * as TrackHistory from './TrackingHistory'
 
 import WhatsApp from '@/public/whatsapp.svg'
 import { appSettings } from "@/config/app";
@@ -25,7 +26,9 @@ export function TrackingProgress(props: TrackingProgressProps) {
     createdAt,
     estimatedDelivery,
     status,
-    trackingCode
+    trackingCode,
+    accessories,
+    technician
   } = data
 
   const progress = getOSProgress(status)
@@ -72,66 +75,101 @@ export function TrackingProgress(props: TrackingProgressProps) {
         </Card.Header>
   
         <Card.Content className="p-6">
-          <div className="flex flex-col">
-      
-            {/* Item 1: Concluído */}
-            <div className="relative flex gap-4 pb-8">
-              {/* Linha Conectora individual */}
-              <div className="absolute left-[17px] top-9 bottom-0 w-0.5 bg-outline" />
-        
-              <div className="z-10 flex items-center justify-center size-9 rounded-full bg-primary border-2 border-primary text-primary-foreground shadow-sm">
-                <Icon name="Check" size={16} />
-              </div>
-              <div className="flex flex-col gap-1 pt-1">
-                <h3 className="text-sm font-semibold">Aparelho recebido</h3>
-                <span className="text-[10px] font-mono text-card-foreground">24/04/2026 · 14:08</span>
-                <p className="text-sm text-card-foreground mt-1 bg-muted p-3 rounded-lg">
-            Recebemos seu aparelho e registramos a entrada no sistema.
-                </p>
-              </div>
-            </div>
 
-            {/* Item 2: Corrente (Com Pulse apenas no Background) */}
-            <div className="relative flex gap-4 pb-8">
-              <div className="absolute left-[17px] top-9 bottom-0 w-0.5 bg-outline" />
-        
-              <div className="relative z-10 flex items-center justify-center size-9">
-                {/* Elemento de pulsação (Apenas Cor/Background) */}
-                <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
+          <TrackHistory.Root>
+            <TrackHistory.ConnectLine />
+            <TrackHistory.Indicator 
+              icon="Clock8"
+              done
+            />
+            <TrackHistory.Content 
+              date="24/04/2026 · 14:08"
+              label="Aparelho recebido"
+              note="Recebemos seu iPhone 14 Pro junto com capa, película e chip. Tudo registrado com fotos no momento da entrega."
+            />
+          </TrackHistory.Root>
           
-                {/* Indicador Estático */}
-                <div className="relative size-full rounded-full bg-background border-2 border-primary text-primary flex items-center justify-center shadow-sm">
-                  <Icon name="Wrench" size={16} />
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-1 pt-1">
-                <h3 className="text-sm font-bold text-primary">Em reparo</h3>
-                <span className="text-[10px] font-mono text-card-foreground">Iniciado em 05/05/2026</span>
-                <div className="flex gap-2 mt-2">
-                  <div className="size-16 rounded-md bg-muted border border-outline flex items-center justify-center text-card-foreground/30">
-                    <Icon name="Camera" size={20} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Item 3: Futuro (Sem linha atravessando) */}
-            <div className="relative flex gap-4">
-              {/* Note que aqui não há a div da linha, pois é o último item */}
-              <div className="z-10 flex items-center justify-center size-9 rounded-full bg-muted border-2 border-outline text-card-foreground/50 opacity-50">
-                <Icon name="Bell" size={16} />
-              </div>
-              <div className="flex flex-col gap-1 pt-1 opacity-50">
-                <h3 className="text-sm font-medium">Pronto para retirada</h3>
-                <span className="text-[10px] font-mono">Aguardando finalização</span>
-              </div>
-            </div>
-
-          </div>
+          <TrackHistory.Root>
+            <TrackHistory.ConnectLine />
+            <TrackHistory.Indicator 
+              icon="ClipboardClock"
+              done
+            />
+            <TrackHistory.Content 
+              date="24/04/2026 · 14:08"
+              label="Aguardando aprovação do orçamento"
+              note="Enviamos o orçamento detalhado para você via WhatsApp. Total: R$ 1.480,00."
+            />
+          </TrackHistory.Root>
+          <TrackHistory.Root>
+            <TrackHistory.ConnectLine />
+            <TrackHistory.Indicator 
+              icon="ClipboardCheck"
+              done
+            />
+            <TrackHistory.Content 
+              date="24/04/2026 · 14:08"
+              label="Orçamento aprovado por você"
+              note="Obrigado pela confirmação!"
+            />
+          </TrackHistory.Root>
+          <TrackHistory.Root>
+            <TrackHistory.ConnectLine />
+            <TrackHistory.Indicator 
+              icon="Wrench"
+              isCurrent
+            />
+            <TrackHistory.Content 
+              date="24/04/2026 · 15:40"
+              label="Em reparo"
+              note="Marcos está com seu aparelho na bancada. Bateria já substituída — agora trocando o conector."
+            />
+          </TrackHistory.Root>
+          <TrackHistory.Root>
+            <TrackHistory.ConnectLine />
+            <TrackHistory.Indicator 
+              icon="Bell"
+            />
+            <TrackHistory.Content 
+              date="previsto para 30/04/2026"
+              label="Pronto para retirada"
+            />
+          </TrackHistory.Root>
+          <TrackHistory.Root>
+            <TrackHistory.Indicator 
+              icon="PartyPopper"
+            />
+            <TrackHistory.Content 
+              label="Aparelho entregue"
+            />
+          </TrackHistory.Root>
         </Card.Content>
       </Card.Root>
-
+      <Card.Root className="mt-4">
+        <Card.Header className="p-4">
+          <Card.Title>Aparelho na assistência</Card.Title>
+        </Card.Header>
+        <Card.Content>
+          <ul className="">
+            <li className="flex justify-between border-b border-outline py-2">
+              <span className="text-sm">Modelo</span>
+              <span className="text-sm font-semibold">{device.model} · {device.brand}</span>
+            </li>
+            <li className="flex justify-between border-b border-outline py-2">
+              <span className="text-sm">Acessórios</span>
+              <span className="text-sm font-semibold">{accessories.join(' · ')}</span>
+            </li>
+            <li className="flex justify-between border-b border-outline py-2">
+              <span className="text-sm">Recebido em</span>
+              <span className="text-sm font-semibold">{new Date(createdAt).toLocaleDateString()}</span>
+            </li>
+            <li className="flex justify-between py-2">
+              <span className="text-sm">Técnico responsável</span>
+              <span className="text-sm font-semibold">{technician.name}</span>
+            </li>
+          </ul>
+        </Card.Content>
+      </Card.Root>
       <Card.Root>
         <Card.Header className="p-4">
           <Card.Title>Precisa falar com a gente?</Card.Title>
