@@ -61,8 +61,15 @@ export function TrackingForm() {
   }
 
   async function handleCodeClick(code: string) {
-    const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${code}`)
-    setTrackingData(response)
+    setStatus('loading')
+
+    try {
+      const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${code}`)
+      setTrackingData(response)
+      setStatus('idle')
+    } catch (error) {
+      setStatus('not-found')
+    }
   }
 
   const handleRevalidateTrackingCodes = useEffectEvent(() => {
@@ -88,10 +95,15 @@ export function TrackingForm() {
     handleRevalidateTrackingCodes()
   }, [])
 
+  console.log(status)
   return (
     <>
-      {trackingData && (
-        <TrackingProgress data={trackingData} onBackward={() => setTrackingData(null)} />
+      {(trackingData || status === 'loading') && (        
+        <TrackingProgress 
+          data={trackingData} 
+          onBackward={() => setTrackingData(null)} 
+          loading={status === 'loading'}
+        />
       )}
       {!trackingData && (
         <div className="min-h-[calc(100vh-86px)] flex flex-col items-center justify-center gap-6 px-4">
