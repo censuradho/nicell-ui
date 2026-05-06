@@ -28,7 +28,7 @@ type Status = 'idle' | 'loading' | 'not-found' | 'loading-code'
 
 export function TrackingForm() {
   const [status, setStatus] = useState<Status>('idle')
-  const [codes, setCodes] = useLocalStorage<ServiceOrderTrackingResponse[]>('nicell-tracking-codes', [])
+  const [codes, setCodes] = useLocalStorage<ServiceOrderTrackingResponse[]>('nicell-tracking-code', [])
 
   const [trackingData, setTrackingData] = useState<ServiceOrderTrackingResponse | null>(null)
 
@@ -44,6 +44,7 @@ export function TrackingForm() {
     try {
       setStatus('loading')
       const cacheCode = codes.find(code => code.trackingCode === data.codigo)
+
       if (cacheCode) {
         setTrackingData(cacheCode)
         setStatus('idle')
