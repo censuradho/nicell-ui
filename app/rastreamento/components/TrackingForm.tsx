@@ -62,6 +62,7 @@ export function TrackingForm() {
 
   async function handleCodeClick(code: string) {
     setStatus('loading-code')
+    window.scrollTo({ top: 0 })
 
     try {
       const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${code}`)
@@ -95,7 +96,6 @@ export function TrackingForm() {
     handleRevalidateTrackingCodes()
   }, [])
 
-  console.log(status)
   return (
     <>
       {(trackingData || status === 'loading-code') && (        
@@ -105,7 +105,7 @@ export function TrackingForm() {
           loading={status === 'loading-code'}
         />
       )}
-      {!trackingData && (
+      {!trackingData && status !== 'loading-code' && (
         <div className="min-h-[calc(100vh-86px)] flex flex-col items-center justify-center gap-6 px-4">
           <h1 className="text-base sm:text-lg md:text-xl text-card-foreground">Rastreamento</h1>
           <h2 className="text-5xl text-center font-bold">Acompanhe seu reparo.</h2>
