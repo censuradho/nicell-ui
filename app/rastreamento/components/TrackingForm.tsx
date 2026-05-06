@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { useState } from 'react'
+import { useEffect, useEffectEvent, useState } from 'react'
 import { AlertCircle } from 'lucide-react'
 import { Button } from '@/components/Button'
 import { Input } from '@/components/Input'
@@ -13,7 +13,7 @@ import { TrackingProgress } from './TrackingProgress'
 import { useLocalStorage } from '@/app/hooks/useLocalStorage'
 import { Icon } from '@/components/icons'
 import { DEVICE_TYPE_ICONS } from '@/constants/devices'
-import { OS_STATUS_LABELS } from '@/constants/serviceOrder'
+import { OS_STATUS, OS_STATUS_LABELS } from '@/constants/serviceOrder'
 
 const schema = z.object({
   codigo: z
@@ -64,6 +64,29 @@ export function TrackingForm() {
     const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${code}`)
     setTrackingData(response)
   }
+
+  const handleRevalidateTrackingCodes = useEffectEvent(() => {
+    const cacheCodes = codes
+      .filter(code => code.status !== OS_STATUS.FINISHED)
+    
+    if (cacheCodes.length === 0) return
+
+    api.post<ServiceOrderTrackingResponse[]>('/service-orders/track', {
+      trackingCodes: cacheCodes.map(code => code.trackingCode)
+    }).then(response => {
+      setCodes(prevState => {
+        const updatedCodes = prevState.map(code => {
+          const updatedCode = response.find(c => c.trackingCode === code.trackingCode)
+          return updatedCode ? updatedCode : code
+        })
+        return updatedCodes
+      })
+    })
+  })
+
+  useEffect(() => {
+    handleRevalidateTrackingCodes()
+  }, [])
 
   return (
     <>
@@ -117,25 +140,29 @@ export function TrackingForm() {
               <h2 className="text-[10px] uppercase text-card-foreground font-medium">Consultas recentes</h2>
             </header>
             <ul>
-              {codes.map(code => (
-                <li 
-                  key={code.trackingCode} 
-                  className="px-4 py-2 border-b border-outline last:border-0 cursor-pointer hover:bg-card/50 flex items-center gap-3" 
-                  onClick={() => handleCodeClick(code.trackingCode)}
-                >
-                  <div className="size-8 bg-card rounded flex items-center justify-center text-card-foreground">
-                    <Icon 
-                      size={14}
-                      name={DEVICE_TYPE_ICONS[code.device.type as keyof typeof DEVICE_TYPE_ICONS]} />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs text-card-foreground">#{String(code.displayId).padStart(4, '0')}</span>
-                    <span className="text-sm text-foreground font-semibold">{code.device.brand} {code.device.model}</span>
-                    <span className="text-xs text-card-foreground pt-2">{OS_STATUS_LABELS[code.status as keyof typeof OS_STATUS_LABELS]} ·  desde {new Date(code.createdAt).toLocaleDateString()}</span>
-                  </div>
-                  <Icon name="ChevronRight" size={16} className="ml-auto text-card-foreground" aria-hidden="true" />
-                </li>
-              ))}
+              {codes.map(code => {
+                const isCurrentStatusSince = code.statusHistory.find(status => status.status === code.status)?.createdAt || new Date().toISOString()
+
+                return (
+                  <li 
+                    key={code.trackingCode} 
+                    className="px-4 py-2 border-b border-outline last:border-0 cursor-pointer hover:bg-card/50 flex items-center gap-3" 
+                    onClick={() => handleCodeClick(code.trackingCode)}
+                  >
+                    <div className="size-8 bg-card rounded flex items-center justify-center text-card-foreground">
+                      <Icon 
+                        size={14}
+                        name={DEVICE_TYPE_ICONS[code.device.type as keyof typeof DEVICE_TYPE_ICONS]} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs text-card-foreground">#{String(code.displayId).padStart(4, '0')}</span>
+                      <span className="text-sm text-foreground font-semibold">{code.device.brand} {code.device.model}</span>
+                      <span className="text-xs text-card-foreground pt-2">{OS_STATUS_LABELS[code.status as keyof typeof OS_STATUS_LABELS]} ·  desde {new Date(isCurrentStatusSince).toLocaleDateString()}</span>
+                    </div>
+                    <Icon name="ChevronRight" size={16} className="ml-auto text-card-foreground" aria-hidden="true" />
+                  </li>
+                )
+              })}
             </ul>
           </section>
         </div>
