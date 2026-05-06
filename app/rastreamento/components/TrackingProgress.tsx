@@ -188,7 +188,7 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
       <Card.Root>
         <Card.Header className="p-4">
           <Card.Title>Precisa falar com a gente?</Card.Title>
-          <Card.Content className="flex items-center gap-4">
+          <Card.Content className="grid md:grid-cols-2 gap-4">
             <a 
               className="flex items-center gap-4 border border-outline rounded-xl p-4 w-full hover:bg-card transition"
               href={!loading ? generateWhatsAppLink(`Olá, gostaria de saber mais sobre a OS #${trackingCode}`) : '#'}
