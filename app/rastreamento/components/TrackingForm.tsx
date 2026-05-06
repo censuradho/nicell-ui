@@ -14,6 +14,7 @@ import { useLocalStorage } from '@/app/hooks/useLocalStorage'
 import { Icon } from '@/components/icons'
 import { DEVICE_TYPE_ICONS } from '@/constants/devices'
 import { OS_STATUS, OS_STATUS_LABELS } from '@/constants/serviceOrder'
+import { useSearchParams } from 'next/navigation'
 
 const schema = z.object({
   codigo: z
@@ -27,6 +28,9 @@ type FormData = z.infer<typeof schema>
 type Status = 'idle' | 'loading' | 'not-found' | 'loading-code'
 
 export function TrackingForm() {
+  const searchParams = useSearchParams()
+  const code = searchParams.get('code')
+
   const [status, setStatus] = useState<Status>('idle')
   const [codes, setCodes] = useLocalStorage<ServiceOrderTrackingResponse[]>('nicell-tracking-code', [])
 
@@ -68,6 +72,15 @@ export function TrackingForm() {
     try {
       const response = await api.get<ServiceOrderTrackingResponse>(`/service-orders/track/${code}`)
       setTrackingData(response)
+      setCodes(prev => {
+        const existingIndex = prev.findIndex(c => c.trackingCode === code)
+        if (existingIndex !== -1) {
+          const updatedCodes = [...prev]
+          updatedCodes[existingIndex] = response
+          return updatedCodes
+        }
+        return [...prev, response]
+      })
       setStatus('idle')
     } catch (error) {
       setStatus('not-found')
@@ -96,6 +109,11 @@ export function TrackingForm() {
   useEffect(() => {
     handleRevalidateTrackingCodes()
   }, [])
+
+  useEffect(() => {
+    if (!code) return;
+    handleCodeClick(code)
+  }, [code])
 
   return (
     <>
