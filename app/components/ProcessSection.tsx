@@ -62,7 +62,7 @@ export function ProcessSection() {
                   <div className="flex items-center justify-between gap-2 mb-1">
                     <p className="text-sm font-semibold">Rastreie sua OS online</p>
                     <Link
-                      href="/rastreamento"
+                      href="/rastreio"
                       className="text-[11px] font-medium text-[#0071e3] whitespace-nowrap hover:underline"
                     >
                       Acessar →

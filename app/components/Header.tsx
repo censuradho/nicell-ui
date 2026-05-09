@@ -8,7 +8,7 @@ import { TopInfo } from "./TopInfo";
 const navigation = [
   { label: 'Marcas', href: '/#marcas' },
   { label: 'Acessórios', href: '/acessorios' },
-  { label: 'Rastreamento', href: '/rastreamento' },
+  { label: 'Rastreio', href: '/rastreio' },
 ]
 
 export function Header() {

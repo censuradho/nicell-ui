@@ -8,7 +8,7 @@ const TrackingForm = dynamic(() => import('./components/TrackingForm')
   .then(mod => mod.TrackingForm))
 
 export const metadata = {
-  title: 'Rastreamento de Ordem de Serviço - Nicell Assistência Técnica',
+  title: 'Rastreio de Ordem de Serviço - Nicell Assistência Técnica',
   description: 'Acompanhe o status da sua ordem de serviço na Nicell Assistência Técnica. Insira seu código de rastreamento para obter informações atualizadas sobre o reparo do seu aparelho.',
 }
 
