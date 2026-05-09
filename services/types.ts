@@ -49,6 +49,5 @@ export interface ServiceOrderTrackingResponse {
     items: Array<{
         name: string,
         quantity: number,
-        price: string
     }>
 }
