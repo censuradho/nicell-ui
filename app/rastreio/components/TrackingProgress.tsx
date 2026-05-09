@@ -2,7 +2,7 @@ import { Icon } from "@/components/icons";
 import { RangeProgress } from "@/components/RangeProgress";
 import { Skeleton } from "@/components/ui/skeleton"; // Certifique-se de ter esse componente
 import { getOSProgress, OS_PROGRESS_STAGES, OS_STATUS_LABELS, STATUS_METADATA } from "@/constants/serviceOrder";
-import { ServiceOrderTrackingResponse } from "@/services/types";
+import { SERVICE_ORDER_TYPE, ServiceOrderTrackingResponse } from "@/services/types";
 import { format } from 'date-fns'
 import * as Card from './Card'
 import * as TrackHistory from './TrackingHistory'
@@ -26,8 +26,18 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
     status = '',
     trackingCode,
     accessories = [],
-    technician
+    technician,
+    items = [],
+    subtotal,
+    total,
+    discount,
+    type
   } = data || {}
+
+  const isWarranty = type === SERVICE_ORDER_TYPE.WARRANTY
+
+  const formatCurrency = (value: number) =>
+    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
 
   const progress = getOSProgress(status)
 
@@ -183,6 +193,62 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
           </ul>
         </Card.Content>
       </Card.Root>
+
+      {/* CARD RESUMO DO PEDIDO */}
+      {(loading || items.length > 0 || total !== null) && (
+        <Card.Root>
+          <Card.Header className="p-4">
+            <Card.Title>Resumo do pedido</Card.Title>
+          </Card.Header>
+          <Card.Content>
+            {loading ? (
+              <div className="flex flex-col gap-3 px-4 pb-4">
+                {Array.from({ length: 2 }).map((_, i) => (
+                  <div key={i} className="flex justify-between">
+                    <Skeleton className="h-4 w-40" />
+                    <Skeleton className="h-4 w-20" />
+                  </div>
+                ))}
+                <div className="flex justify-between mt-2">
+                  <Skeleton className="h-5 w-24" />
+                  <Skeleton className="h-5 w-24" />
+                </div>
+              </div>
+            ) : (
+              <ul className="flex flex-col">
+                {items.map((item, idx) => (
+                  <li key={idx} className="flex justify-between items-center py-2 border-b border-outline px-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">{item.name}</span>
+                      <span className="text-xs text-card-foreground bg-muted px-1.5 py-0.5 rounded">×{item.quantity}</span>
+                    </div>
+                  </li>
+                ))}
+                {!isWarranty && subtotal != null && (
+                  <li className="flex justify-between py-2 border-b border-outline px-4">
+                    <span className="text-sm text-card-foreground">Subtotal</span>
+                    <span className="text-sm">{formatCurrency(subtotal)}</span>
+                  </li>
+                )}
+                {!isWarranty && discount != null && discount > 0 && (
+                  <li className="flex justify-between py-2 border-b border-outline px-4">
+                    <span className="text-sm text-card-foreground">Desconto</span>
+                    <span className="text-sm text-green-600">- {formatCurrency(discount)}</span>
+                  </li>
+                )}
+                <li className="flex justify-between py-2 px-4">
+                  <span className="text-sm font-semibold">Total</span>
+                  {isWarranty ? (
+                    <span className="text-sm font-semibold text-primary">Coberto pela garantia</span>
+                  ) : total != null ? (
+                    <span className="text-sm font-bold">{formatCurrency(total)}</span>
+                  ) : null}
+                </li>
+              </ul>
+            )}
+          </Card.Content>
+        </Card.Root>
+      )}
 
       {/* CONTATO (Mantém botões mas esconde dados sensíveis) */}
       <Card.Root>
