@@ -11,16 +11,26 @@ export const OS_STATUS = {
   PENDING: 'PENDING',
 };
 
-type OSStatus = typeof OS_STATUS[keyof typeof OS_STATUS]
+export const SERVICE_ORDER_TYPE = {
+  NORMAL: 'NORMAL',
+  WARRANTY: 'WARRANTY',
+  RETOUCH: 'RETOUCH', // Opcional: quando é um ajuste que não chega a ser garantia
+} as const
 
+type OSStatus = typeof OS_STATUS[keyof typeof OS_STATUS]
+export type ServiceOrderType = typeof SERVICE_ORDER_TYPE[keyof typeof SERVICE_ORDER_TYPE]
 export interface ServiceOrderTrackingResponse {
     trackingCode: string,
     displayId: number,
     status: OSStatus,
     estimatedDelivery: string,
+    type: ServiceOrderType,
     createdAt: string,
     accessories: string[]
     partner: { name: string }
+    subtotal: number | null;
+    total: number | null;
+    discount: number | null;
     technician: {
         name: string,
     }
