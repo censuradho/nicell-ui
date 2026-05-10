@@ -41,6 +41,7 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
     new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
 
   const progress = getOSProgress(status)
+  const subtotalWithService = Number(subtotal) + Number(serviceValue ?? 0)
 
   return (
     <div className="flex flex-col gap-2 w-full h-full flex-1 container-md py-10">
@@ -228,7 +229,7 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
                 {!isWarranty && subtotal != null && (
                   <li className="flex justify-between py-2 border-b border-outline px-4">
                     <span className="text-sm text-card-foreground">Subtotal</span>
-                    <span className="text-sm">{formatCurrency(subtotal + (serviceValue ?? 0))}</span>
+                    <span className="text-sm">{formatCurrency(subtotalWithService)}</span>
                   </li>
                 )}
                 {!isWarranty && discount != null && discount > 0 && (
