@@ -32,6 +32,7 @@ export interface ServiceOrderTrackingResponse {
     total: number | null;
     discount: number | null;
     serviceValue: number | null;
+    warrantyExpiry: string | null;
     technician: {
         name: string,
     }
