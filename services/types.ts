@@ -31,6 +31,7 @@ export interface ServiceOrderTrackingResponse {
     subtotal: number | null;
     total: number | null;
     discount: number | null;
+    serviceValue: number | null;
     technician: {
         name: string,
     }
