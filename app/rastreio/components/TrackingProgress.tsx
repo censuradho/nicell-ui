@@ -31,7 +31,8 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
     subtotal,
     total,
     discount,
-    type
+    type,
+    serviceValue
   } = data || {}
 
   const isWarranty = type === SERVICE_ORDER_TYPE.WARRANTY
@@ -227,7 +228,7 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
                 {!isWarranty && subtotal != null && (
                   <li className="flex justify-between py-2 border-b border-outline px-4">
                     <span className="text-sm text-card-foreground">Subtotal</span>
-                    <span className="text-sm">{formatCurrency(subtotal)}</span>
+                    <span className="text-sm">{formatCurrency(subtotal + (serviceValue ?? 0))}</span>
                   </li>
                 )}
                 {!isWarranty && discount != null && discount > 0 && (
