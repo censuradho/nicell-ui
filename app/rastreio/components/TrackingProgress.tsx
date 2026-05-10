@@ -32,7 +32,8 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
     total,
     discount,
     type,
-    serviceValue
+    serviceValue,
+    warrantyExpiry
   } = data || {}
 
   const isWarranty = type === SERVICE_ORDER_TYPE.WARRANTY
@@ -181,9 +182,10 @@ export function TrackingProgress({ data, onBackward, loading }: TrackingProgress
               { label: 'Modelo', value: device ? `${device.model} · ${device.brand}` : null },
               { label: 'Acessórios', value: accessories?.length > 0 ? accessories.join(' · ') : 'Nenhum' },
               { label: 'Recebido em', value: createdAt ? new Date(createdAt).toLocaleDateString() : null },
-              { label: 'Técnico responsável', value: technician?.name }
-            ].map((item, idx) => (
-              <li key={idx} className={`flex justify-between py-2 ${idx !== 3 ? 'border-b border-outline' : ''}`}>
+              { label: 'Técnico responsável', value: technician?.name },
+              ...(warrantyExpiry ? [{ label: 'Garantia até', value: format(new Date(warrantyExpiry), 'dd/MM/yyyy') }] : [])
+            ].map((item, idx, arr) => (
+              <li key={idx} className={`flex justify-between py-2 ${idx !== arr.length - 1 ? 'border-b border-outline' : ''}`}>
                 <span className="text-sm">{item.label}</span>
                 {loading ? (
                   <Skeleton className="h-4 w-32" />
