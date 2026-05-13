@@ -47,9 +47,9 @@ export function Header() {
             <LinkButton href="/#orcamento" variant="text" size="sm">
             Orçamento online
             </LinkButton>
-            <AnchorButton href="/login"  size="sm">
+            {/* <AnchorButton href="/login"  size="sm">
             Login
-            </AnchorButton>
+            </AnchorButton> */}
           </div>
 
           <MobileMenu navigation={navigation} />
